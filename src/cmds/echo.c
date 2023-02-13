@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 11:33:03 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/13 15:25:32 by lmiehler         ###   ########.fr       */
+/*   Created: 2023/02/13 18:01:16 by lmiehler          #+#    #+#             */
+/*   Updated: 2023/02/13 18:38:43 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <readline/readline.h>
-#include <readline/history.h>
 #include "libft.h"
 
-void	print_strs(char *str[])
+void	gs_echo_print(char **strs)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	while (str[i])
+	while (strs[i] && strs[i + 1])
 	{
-		ft_printf("%s\n", str[i]);
+		ft_printf("%s ", strs[i]);
 		i++;
 	}
+	ft_printf("%s", strs[i]);
 }
 
-int	main(int argc, char *argv[], char *envp[])
+void	gs_echo(char **cmd_args)
 {
-	char *line;
-	while (1)
+	if (!ft_strncmp(cmd_args[0], "-n", 3))
 	{
-		line = readline("[Minishell]% ");
-		add_history(line);
-		if (!ft_strncmp("clear", line, 6))
-			rl_clear_history();
-		ft_printf("Str={%s}\n", line);
+		gs_echo_print(&cmd_args[1]);
 	}
-	return (0);
+	else
+	{
+		gs_echo_print(&cmd_args[0]);	
+		ft_printf("\n");
+	}
 }

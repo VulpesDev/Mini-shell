@@ -6,14 +6,14 @@ CC		:=	cc
 CFLAGS	:=	-g
 
 # Targets
-TARGET	:= minishell
+TARGET	:= gigashell
 
 # Dependencies
-LIB_DEPS := libft.a
+LIB_DEPS := libft.a libreadline.a
 LIB_DIRS := libft
 
 # Includes
-INC_DIRS := libft/include
+INC_DIRS := libft/include src src/parser src/cmds src/executioner src/utils
 
 # Directories
 SRC_DIR := src
@@ -31,6 +31,9 @@ E_LIB_DEPS	:= $(foreach lib, $(LIB_DEPS), $(addprefix -l, $(subst .a, , $(subst 
 
 # =======BUILD=======
 all: $(TARGET)
+
+run: $(TARGET)
+	./$(TARGET)
 
 # Linker
 $(TARGET): $(OBJ)

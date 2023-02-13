@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 11:33:03 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/13 15:25:32 by lmiehler         ###   ########.fr       */
+/*   Created: 2023/02/13 17:38:06 by lmiehler          #+#    #+#             */
+/*   Updated: 2023/02/13 18:25:04 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <readline/readline.h>
-#include <readline/history.h>
 #include "libft.h"
+#include "minishell.h"
+#include "cmds.h"
+#include "utils.h"
 
-void	print_strs(char *str[])
+void parser(t_meta *meta, const char *str)
 {
-	int	i;
+	char **strs;
 
-	i = 0;
-	while (str[i])
-	{
-		ft_printf("%s\n", str[i]);
-		i++;
-	}
-}
-
-int	main(int argc, char *argv[], char *envp[])
-{
-	char *line;
-	while (1)
-	{
-		line = readline("[Minishell]% ");
-		add_history(line);
-		if (!ft_strncmp("clear", line, 6))
-			rl_clear_history();
-		ft_printf("Str={%s}\n", line);
-	}
-	return (0);
+	strs = ft_split(str, ' '); //! if split == NULL - segf
+	meta->cmd = strs[0];
+	meta->cmd_args = &strs[1];
 }

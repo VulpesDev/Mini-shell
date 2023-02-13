@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"history.h": "c",
+		"cmds.h": "c",
+		"libft.h": "c"
+	}
+}
