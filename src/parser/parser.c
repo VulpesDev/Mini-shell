@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:38:06 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/13 18:25:04 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:22:48 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void parser(t_meta *meta, const char *str)
 {
 	char **strs;
 
+//?Myowncomment
 	strs = ft_split(str, ' '); //! if split == NULL - segf
 	meta->cmd = strs[0];
 	meta->cmd_args = &strs[1];
