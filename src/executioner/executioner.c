@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executioner.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:38:16 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/14 12:40:11 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:14:58 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 //? Add a return value to the executioner
 void	executioner(t_meta *meta)
 {
+	if (meta->cmd == NULL)
+		return ;
 	if (!ft_strncmp("env", meta->cmd, 4))
 	{
 		gs_env(meta->envp);
