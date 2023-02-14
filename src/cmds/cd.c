@@ -6,14 +6,14 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:35:17 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/14 12:36:15 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:44:33 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdlib.h>
 #include<unistd.h>
 #include "libft.h"
-#include "minishell.h"
+#include "cmds.h"
 
 /////TODO cd without arguments goes to user home
 /////TODO cd with '~' as an argument goes to user home
