@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:33:29 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/14 11:40:09 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:40:42 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "cmds.h"
 
 void	gs_unset(char **cmd_args, t_meta *meta)
 {
