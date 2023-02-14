@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:35:17 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/14 12:44:33 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:48:05 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 /////TODO cd without arguments goes to user home
 /////TODO cd with '~' as an argument goes to user home
 //TODO if directory does not exist display 'cd: no such file or directory: {arg}'
-//? how to check if it would be a segv
 int	gs_cd(t_meta *meta)
 {
 	if (!meta->cmd_args[0])
