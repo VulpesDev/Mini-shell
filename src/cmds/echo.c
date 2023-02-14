@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:01:16 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/14 10:47:16 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:15:46 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,13 @@ void	gs_echo_print(char **strs)
 	ft_printf("%s", strs[i]);
 }
 
-void	gs_echo(char **cmd_args)
+int	gs_echo(char **cmd_args)
 {
-	if (!ft_strncmp(cmd_args[0], "-n", 3))
+	if (cmd_args == NULL)
+	{
+		ft_printf("\n");
+	}
+	else if (!ft_strncmp(cmd_args[0], "-n", 3))
 	{
 		gs_echo_print(&cmd_args[1]);
 	}
@@ -36,4 +40,5 @@ void	gs_echo(char **cmd_args)
 		gs_echo_print(&cmd_args[0]);
 		ft_printf("\n");
 	}
+	return (0);
 }

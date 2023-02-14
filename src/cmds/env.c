@@ -6,14 +6,17 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:48:34 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/13 18:18:56 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:08:41 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils.h"
 
-void gs_env(char **envp)
+int	gs_env(char **envp)
 {
+	if (envp == NULL)
+		return (1);
 	print_strs(envp);
+	return (0);
 }
