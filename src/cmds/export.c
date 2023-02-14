@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:33:32 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/14 11:40:02 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/14 14:53:48 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "cmds.h"
 
 void	gs_export(char **cmd_args, t_meta *meta)
 {
