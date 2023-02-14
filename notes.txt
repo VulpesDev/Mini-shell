@@ -1,5 +1,0 @@
-created pwd.c
-edited src/main.c so it fits the norm
-src/cmds/cmds.h and src/cmds/pwd.c creating pwd command
-src/cmds/echo.c so it fits the norm
-src/executioner/executioner.c so it can execute pwd command
