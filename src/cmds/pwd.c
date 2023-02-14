@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmds.h                                             :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:49:45 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/14 10:43:58 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/02/14 10:41:11 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/02/14 11:07:07 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CMDS_H
-# define CMDS_H
+#include<unistd.h>
+#include "libft.h"
 
-void gs_env(char **envp);
+//? should I use write here?
+void	gs_pwd(void)
+{
+	char	buf[1000];
 
-void gs_exit(int status);
-
-void gs_echo(char **str);
-
-void	gs_pwd(void);
-
-#endif
+	getcwd(buf, 1000);
+	ft_printf("%s\n", buf);
+}

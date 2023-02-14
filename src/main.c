@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:59:01 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/13 18:16:29 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/14 10:33:09 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ void init_meta(t_meta *meta, char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_meta meta;
+	t_meta	meta;
+	char	*line;
+
 	init_meta(&meta, envp);
 	ft_printf("Hi Mom\n");
-	char *line;
 	while (1)
 	{
 		line = readline("[Gigashell]% ");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:01:16 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/13 18:38:43 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/14 10:47:16 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	gs_echo_print(char **strs)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (strs[i] && strs[i + 1])
@@ -33,7 +33,7 @@ void	gs_echo(char **cmd_args)
 	}
 	else
 	{
-		gs_echo_print(&cmd_args[0]);	
+		gs_echo_print(&cmd_args[0]);
 		ft_printf("\n");
 	}
 }

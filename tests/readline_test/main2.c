@@ -1,24 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmds.h                                             :+:      :+:    :+:   */
+/*   main2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:49:45 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/14 10:43:58 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/02/13 15:25:15 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/02/13 15:30:42 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CMDS_H
-# define CMDS_H
+#include <readline/readline.h>
+#include <readline/history.h>
+#include "libft.h"
 
-void gs_env(char **envp);
+void	print_strs(char *str[])
+{
+	int	i;
 
-void gs_exit(int status);
+	i = 0;
+	while (str[i])
+	{
+		ft_printf("%s\n", str[i]);
+		i++;
+	}
+}
 
-void gs_echo(char **str);
+int	main(int argc, char *argv[], char *envp[])
+{
+	char	*line;
 
-void	gs_pwd(void);
-
-#endif
+	while (1)
+	{
+		line = readline("[Minishell]% ");
+		ft_printf("%s\n", line);
+	}
+	return (0);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executioner.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:38:16 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/13 18:36:57 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/14 10:43:43 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "minishell.h"
 #include "cmds.h"
 
-void executioner(t_meta *meta)
+//? Add a return value to the executioner
+void	executioner(t_meta *meta)
 {
 	if (!ft_strncmp("env", meta->cmd, 4))
 	{
@@ -27,5 +28,9 @@ void executioner(t_meta *meta)
 	else if (!ft_strncmp("echo", meta->cmd, 5))
 	{
 		gs_echo(meta->cmd_args);
+	}
+	else if (!ft_strncmp("pwd", meta->cmd, 4))
+	{
+		gs_pwd();
 	}
 }
