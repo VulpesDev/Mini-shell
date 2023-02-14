@@ -19,7 +19,7 @@ void parser(t_meta *meta, const char *str)
 {
 	char **strs;
 
-//?Myowncomment
+	// Bullshit
 	strs = ft_split(str, ' '); //! if split == NULL - segf
 	meta->cmd = strs[0];
 	meta->cmd_args = &strs[1];
