@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:38:16 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/14 11:37:58 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:23:49 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	executioner(t_meta *meta)
 	}
 	else if (!ft_strncmp("cd", meta->cmd, 4))
 	{
-		gs_cd(meta->cmd_args[0]);
+		gs_cd(meta);
 	}
 }
