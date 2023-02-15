@@ -35,6 +35,30 @@ void	*xmalloc(size_t size)
 	return (p);
 }
 
+int	size_dp(char **str)
+{
+	int	result;
+
+	result = 0;
+	while (str[result])
+		result++;
+	return (result);
+}
+
+char	**cpy_dp(char **str)
+{
+	char	**result;
+	int		len;
+	int		i;
+
+	i = -1;
+	len = size_dp(str);
+	result = xmalloc(len * sizeof(char *) + 1);
+	while (++i < len)
+		result[i] = ft_strdup(str[i]);
+	return (result);
+}
+
 void	print_strs(char *str[])
 {
 	int	i;

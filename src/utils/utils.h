@@ -20,4 +20,8 @@ void	*xmalloc(size_t size);
 
 void	malloc_check(void *p);
 
+int	size_dp(char **str);
+
+char	**cpy_dp(char **str);
+
 #endif
