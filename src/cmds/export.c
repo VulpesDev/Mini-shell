@@ -6,7 +6,7 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:33:32 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/14 11:40:02 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/14 14:32:01 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	gs_export(char **cmd_args, t_meta *meta)
 {
-	
+
 }

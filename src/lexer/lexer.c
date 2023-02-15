@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:35:50 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/14 18:00:35 by lmiehler         ###   ########.fr       */
+/*   Created: 2023/02/14 13:31:25 by lmiehler          #+#    #+#             */
+/*   Updated: 2023/02/14 19:48:16 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
+#include "minishell.h"
+#include "utils.h"
 
-# include "libft.h"
-
-# define WORD 0
-# define SYMBOL 1
-
-typedef struct s_token
+char **lexical_split(char *str)
 {
-	char *str;
-	int	type;
-}t_token;
+	int i;
+	int	word_start;
 
-typedef struct s_meta
+	word_start = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ')
+		{
+			ft_substr(str, word_start, i - word_start);
+			word_start = i + 1;
+		}
+		word_start++;
+		i++;
+	}
+}
+
+void	lexer(t_meta *meta, const char *str)
 {
-	char **envp;
-	int	exit_status;
-	char *cmd;
-	char **cmd_args;
-	t_list	*tokens;
-}t_meta;
-
-#endif
+	t_list *tokens;
+}
