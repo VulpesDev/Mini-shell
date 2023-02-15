@@ -2,6 +2,7 @@
 	"files.associations": {
 		"history.h": "c",
 		"cmds.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"executioner.h": "c"
 	}
 }
