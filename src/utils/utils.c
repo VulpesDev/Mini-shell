@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:18:24 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/14 19:47:48 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:58:44 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*xmalloc(size_t size)
 	return (p);
 }
 
-int	size_dp(char **str)
+int	dp_size(char **str)
 {
 	int	result;
 
@@ -45,14 +45,24 @@ int	size_dp(char **str)
 	return (result);
 }
 
-char	**cpy_dp(char **str)
+int	dp_free(char **str)
+{
+	int	result;
+
+	result = 0;
+	while (str[result])
+		result++;
+	return (result);
+}
+
+char	**dp_cpy(char **str)
 {
 	char	**result;
 	int		len;
 	int		i;
 
 	i = -1;
-	len = size_dp(str);
+	len = dp_size(str);
 	result = xmalloc(len * sizeof(char *) + 1);
 	while (++i < len)
 		result[i] = ft_strdup(str[i]);

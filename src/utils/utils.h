@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:17:56 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/14 19:47:55 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/15 17:01:19 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void	*xmalloc(size_t size);
 
 void	malloc_check(void *p);
 
-int	size_dp(char **str);
+int	dp_size(char **str);
 
-char	**cpy_dp(char **str);
+char	**dp_cpy(char **str);
+
+int	dp_free(char **str);
 
 #endif
