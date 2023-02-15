@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:17:56 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/15 16:06:47 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/14 19:47:55 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 void	print_strs(char *str[]);
 
 void	*xmalloc(size_t size);
+
+void	malloc_check(void *p);
 
 int	size_dp(char **str);
 
