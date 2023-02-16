@@ -6,7 +6,7 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:38:48 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/16 20:18:15 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/16 21:16:45 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,11 @@ char	**expand_wildcards(char *str)
 int main(int argc, char **argv, char **envp)
 {
 	char **expanded = expand_wildcards(argv[1]);
+	char **cpy = expanded;
 	while (*expanded)
 	{
 		printf("{%s}\n", *expanded);
 		expanded++;
 	}
+	free_strs(cpy);
 }
