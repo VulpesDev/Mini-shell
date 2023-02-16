@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander.c                                         :+:      :+:    :+:   */
+/*   getenv_test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 15:05:15 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/14 20:01:03 by lmiehler         ###   ########.fr       */
+/*   Created: 2023/02/14 18:19:26 by lmiehler          #+#    #+#             */
+/*   Updated: 2023/02/16 19:06:21 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "minishell.h"
 #include "libft.h"
-#include "utils.h"
-
+#include <stdio.h>
+#include <stdlib.h>
 char *gs_getenv(char *str, char **envp)
 {
 	char	*valuestr;
@@ -23,59 +21,86 @@ char *gs_getenv(char *str, char **envp)
 
 	valuestr = NULL;
 	env_var = ft_strjoin(str, "=");
-	malloc_check((void *)env_var);
 	i = 0;
 	while (envp[i])
 	{
 		if (!ft_strncmp(env_var, envp[i], ft_strlen(env_var)))
 		{
 			valuestr = ft_substr(envp[i], ft_strlen(env_var), ft_strlen(envp[i]));
-			malloc_check((void *)valuestr);
 			break ;
 		}
+		i++;
 	}
 	free(env_var);
 	return (valuestr);
 }
 
+int ft_isspace(char c)
+{
+	if (c == ' '
+		|| c == '\f'
+		|| c == '\n'
+		|| c == '\r'
+		|| c == '\t'
+		|| c == '\v')
+	{
+		return (1);
+	}
+	return (0);
+}
+
 char *evaluate_dollar(char *str, char **envp)
 {
+	printf("str = %s\n", str);
 	char	*key;
 	char	*expansion;
 	int		i;
 
-	i = 0;
 	if (!str)
 		return (NULL);
-	if (str[i] == '$' && (str[i + 1] != '\0' || str[i + 1] == '$'))
+	i = 0;
+	if (str[i + 1] == '\0' || ft_isspace(str[i + 1]) || str[i + 1] == '$')
 		return (ft_strdup("$"));
-	while (str[i + 1] && str[i + 1] != '$')
+	while (str[i + 1] && str[i + 1] != '$' && !ft_isspace(str[i + 1]))
 		i++;
 	key = ft_substr(str, 1, i);
-	malloc_check((void *)key);
+	printf("key = %s\n", key);
 	expansion = gs_getenv(key, envp);
 	free(key);
+	if (!expansion)
+		return (ft_strdup(""));
 	return (expansion);
 }
 
-char *expand_variables(const char *str, t_meta *meta)
+char *expand_variables(char *str, char **envp)
 {
-	int		i;
-	t_list	*lst;
-
+	char *ret;
+	char *exp;
+	int i;
+	int j;
+	j = 0;
 	i = 0;
-	while(str[i])
+
+	ret = malloc(100000);
+	while (str[i])
 	{
 		if (str[i] == '$')
 		{
-			ft_lstadd_back(&lst, ft_lstnew(evaluate_dollar(&str[i], meta->envp)));
+			exp = evaluate_dollar(&str[i], envp);
+			while (str[i + 1] && str[i + 1] != '$' && !ft_isspace(str[i + 1]))
+				i++;
+			ft_memcpy((void *)&ret[j], exp, ft_strlen(exp));
+			j += ft_strlen(exp);
 		}
+		else
+			ret[j++] = str[i];
 		i++;
 	}
-	
+	ret[j] = '\0';
+	return (ret);
 }
 
-char **expand_wildcards()
+int main(int argc, char **argv, char **envp)
 {
-
+	printf("OUT = {%s}\n", expand_variables(argv[1], envp));
 }
