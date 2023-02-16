@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:59:01 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/15 16:51:14 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/16 11:13:39 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 void init_meta(t_meta *meta, char **envp)
 {
-	meta->envp = dp_cpy(envp);
+	meta->envp = dp_cpy(envp);//!Should free this at exit
 	meta->exit_status = 0;
 	meta->cmd = NULL;
 	meta->cmd_args = NULL;

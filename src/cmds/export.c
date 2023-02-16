@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:33:32 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/15 19:04:16 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/16 11:12:22 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 /////TODO Compare the string before = sign
 /////TODO if it exists, replace the value
 /////TODO if it doesn't exist create a new one
-//TODO export without arguments displays env
+/////TODO export without arguments displays env
 //? when more than one equal sign, problems
 //? when old_split fails maybe I have to free new_split ?
 int	gs_validate_export(char **cmd_args)

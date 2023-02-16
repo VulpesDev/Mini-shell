@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:33:29 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/15 19:05:13 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/16 11:36:10 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	gs_validate_unset(char **cmd_args)
 	return (0);
 }
 
-int	gs_remove_unset(t_meta *meta, char *str, int i)
+int	gs_remove_unset(t_meta *meta, char *str)
 {
 	char	**old_split;
 	int		j;
@@ -46,15 +46,15 @@ int	gs_remove_unset(t_meta *meta, char *str, int i)
 		old_split = ft_split(meta->envp[j], '=');
 		malloc_check(old_split);
 		if (!ft_strncmp(old_split[0], str,
-				ft_strlen(old_split[0] + ft_strlen(str))))
+				ft_strlen(old_split[0]) + ft_strlen(str)))
 		{
+			free(meta->envp[j]);
 			while (meta->envp[j + 1])
 			{
 				meta->envp[j] = meta->envp[j + 1];
 				j++;
 			}
-			free(meta->envp[j]);
-			meta->envp[j - 1] = NULL;
+			meta->envp[j] = NULL;
 		}
 		dp_free(old_split);
 	}
@@ -71,5 +71,5 @@ void	gs_unset(char **cmd_args, t_meta *meta)
 		ft_fprintf(2, "ERROR!\n");
 	i = -1;
 	while (cmd_args[++i])
-		gs_remove_unset(meta, cmd_args[0], i);
+		gs_remove_unset(meta, cmd_args[i]);
 }
