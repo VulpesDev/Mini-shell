@@ -3,37 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:31:25 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/14 19:48:16 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/16 17:26:22 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "minishell.h"
-#include "utils.h"
+#include "lexer.h"
 
-char **lexical_split(char *str)
+static unsigned int	occ_c(const char *s, char c)
 {
-	int i;
-	int	word_start;
+	int	i;
+	int	result;
+	int	in_c;
 
-	word_start = 0;
-	i = 0;
-	while (str[i])
+	i = -1;
+	result = 0;
+	in_c = 1;
+	if (s == NULL)
+		return (0);
+	while (s[++i])
 	{
-		if (str[i] == ' ')
+		if (s[i] == c)
+			in_c = 1;
+		if (in_c && s[i] != c)
 		{
-			ft_substr(str, word_start, i - word_start);
-			word_start = i + 1;
+			result++;
+			in_c = 0;
 		}
-		word_start++;
-		i++;
 	}
+	return (result);
 }
 
-void	lexer(t_meta *meta, const char *str)
+char	**lexical_split(char *s, char c)
 {
-	t_list *tokens;
+	char	**result;
+
+	if (!s)
+		return (NULL);
+	result = xmalloc((occ_c(s, c) + 1) * sizeof(char *));
+	if (!result)
+		return (NULL);
+	helper(s, c, result);
+	return (result);
+}
+
+void	lexer(char *str)
+{
+	char	**result;
+	int		i;
+
+	i = -1;
+	result = lexical_split(str, ' ');
+	while (result[++i])
+	{
+		ft_printf("%s\n", result[i]);
+	}
 }
