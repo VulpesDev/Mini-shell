@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:38:06 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/15 10:53:01 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/16 11:14:46 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void parser(t_meta *meta, const char *str)
 	char **strs;
 
 	//!Just pressing enter creates segv
+	//!MUST FREE strs on exit
 	// Temporary fix for if str == NULL
 	if (!str)
 	{
