@@ -2,15 +2,14 @@ LABELS = word, symbol
 
 1st split by spaces which are not in quotes
 2nd split by symbols | ( ) && || which are not in quotes
-echo Hello
-TOKENS: {echo} {Hello}
-echo       Hello
-TOKENS: {echo}word {Hello}word
-echo HELLO WORLD | cat
-TOKENS: {echo}word {HELLO}word {WORLD}word {PIPE}SYMBOL {CAT}word
-echo "HELLO WORLD"
-TOKENS: {echo}word {HELLO WORLD}word
-echo "HELLO WORLD" | wc -l
-TOKENS: {exho}cmd {HELLO WORLD}str {|}symbol {wc}command {-l}option
-echo" HELLO"
-TOKENS: {echo HELLO}word
+
+echo hey what | is '  ||' going on
+
+echo
+hey
+what
+|
+is
+'  ||'
+going
+on

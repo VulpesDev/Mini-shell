@@ -6,58 +6,45 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:31:25 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/16 17:26:22 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/17 13:02:48 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-static unsigned int	occ_c(const char *s, char c)
+t_token	*token_new(void *str, int type)
 {
-	int	i;
-	int	result;
-	int	in_c;
+	t_token	*new;
 
-	i = -1;
-	result = 0;
-	in_c = 1;
-	if (s == NULL)
-		return (0);
-	while (s[++i])
-	{
-		if (s[i] == c)
-			in_c = 1;
-		if (in_c && s[i] != c)
-		{
-			result++;
-			in_c = 0;
-		}
-	}
-	return (result);
-}
-
-char	**lexical_split(char *s, char c)
-{
-	char	**result;
-
-	if (!s)
+	new = xmalloc(sizeof(t_token));
+	if (!new)
 		return (NULL);
-	result = xmalloc((occ_c(s, c) + 1) * sizeof(char *));
-	if (!result)
-		return (NULL);
-	helper(s, c, result);
-	return (result);
+	new->str = str;
+	new->next = NULL;
+	return (new);
 }
 
 void	lexer(char *str)
 {
 	char	**result;
+	char	**result2;
+	char	*set;
 	int		i;
+	int		k;
 
-	i = -1;
+	set = ft_strdup("<>|&()");
 	result = lexical_split(str, ' ');
+	i = -1;
 	while (result[++i])
 	{
-		ft_printf("%s\n", result[i]);
+		result2 = symbolical_split(result[i], set);
+		k = -1;
+		while (result2[++k])
+		{
+			ft_printf("%d:%s\n", k, result2[k]);
+		}
 	}
+	free(set);
+	free(result);
+	free(result2);
 }
