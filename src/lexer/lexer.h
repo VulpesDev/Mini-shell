@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:31:27 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 15:18:11 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/19 17:05:57 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 t_token	*lexer(char *str);
 
-char	**lexical_split(char *s, char c);
+char	**lexical_split(char *s);
 
 char	**symbolical_split(char *s, char *c);
 

@@ -6,11 +6,12 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:25:07 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/19 11:55:22 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:40:11 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "utils.h"
 
 static void	allocate_word(int ii, char **word, char *s)
 {
@@ -20,11 +21,11 @@ static void	allocate_word(int ii, char **word, char *s)
 	length = 0;
 	quot[0] = 0;
 	quot[1] = 0;
-	while (s[ii] && (s[ii] != ' ' || quot[0] || quot[1]))
+	while (s[ii] && (!ft_isspace(s[ii]) || quot[0] || quot[1]))
 	{
-		if (s[ii] == 39 && !quot[1])
+		if (s[ii] == '\'' && !quot[1])
 			quot[0] = !quot[0];
-		else if (s[ii] == 34 && !quot[0])
+		else if (s[ii] == '\"' && !quot[0])
 			quot[1] = !quot[1];
 		ii++;
 		length++;
@@ -40,7 +41,7 @@ static void	set_vars(int *count, int i_s[], int quot[])
 	quot[1] = 0;
 }
 
-static void	helper(char *s, char c, char **result)
+static void	helper(char *s, char **result)
 {
 	int	count;
 	int	len;
@@ -51,15 +52,15 @@ static void	helper(char *s, char c, char **result)
 	set_vars(&count, i_s, quot);
 	while (++i_s[0] < len)
 	{
-		if (s[i_s[0]] != c)
+		if (!ft_isspace(s[i_s[0]]))
 		{
 			i_s[1] = 0;
 			allocate_word(i_s[0], &result[count], s);
-			while ((s[i_s[0]] != c || quot[1] || quot[0]) && s[i_s[0]])
+			while ((!ft_isspace(s[i_s[0]])|| quot[1] || quot[0]) && s[i_s[0]])
 			{
-				if (s[i_s[0]] == 39 && !quot[1])
+				if (s[i_s[0]] == '\'' && !quot[1])
 					quot[0] = !quot[0];
-				else if (s[i_s[0]] == 34 && !quot[0])
+				else if (s[i_s[0]] == '\"' && !quot[0])
 					quot[1] = !quot[1];
 				result[count][i_s[1]++] = s[i_s[0]];
 				i_s[0]++;
@@ -70,7 +71,7 @@ static void	helper(char *s, char c, char **result)
 	result[count] = 0;
 }
 
-static unsigned int	occ_c(const char *s, char c)
+static unsigned int	occ_c(const char *s)
 {
 	int	i;
 	int	result;
@@ -83,9 +84,9 @@ static unsigned int	occ_c(const char *s, char c)
 		return (0);
 	while (s[++i])
 	{
-		if (s[i] == c)
+		if (ft_isspace(s[i]))
 			in_c = 1;
-		if (in_c && s[i] != c)
+		if (in_c && !ft_isspace(s[i]))
 		{
 			result++;
 			in_c = 0;
@@ -94,15 +95,15 @@ static unsigned int	occ_c(const char *s, char c)
 	return (result);
 }
 
-char	**lexical_split(char *s, char c)
+char	**lexical_split(char *s)
 {
 	char	**result;
 
 	if (!s)
 		return (NULL);
-	result = xmalloc((occ_c(s, c) + 1) * sizeof(char *));
+	result = xmalloc((occ_c(s) + 1) * sizeof(char *));
 	if (!result)
 		return (NULL);
-	helper(s, c, result);
+	helper(s, result);
 	return (result);
 }

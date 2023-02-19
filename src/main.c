@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:59:01 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 15:19:45 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:35:54 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	main(int argc, char **argv, char **envp)
 		{
 			ft_printf("%s:", tokens->str);
 			if (tokens->type == 'w')
-				ft_printf("%s\n", "word");
+				ft_printf("   %s\n", "word");
 			else if (tokens->type == 's')
-				ft_printf("%s\n", "symbol");
+				ft_printf("   %s\n", "symbol");
 			tokens = tokens->next;
 		}
 		executioner(&meta);
