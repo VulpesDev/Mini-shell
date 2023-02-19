@@ -6,12 +6,21 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:18:24 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 14:18:16 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/19 14:27:27 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
+
+void	malloc_check(void *p)
+{
+	if (p == NULL)
+	{
+		ft_fprintf(2, "Malloc failed\n");
+		exit(1);
+	}
+}
 
 char *gs_getenv(char *str, char **envp)
 {
@@ -51,14 +60,6 @@ int ft_isspace(char c)
 	return (0);
 }
 
-void	malloc_check(void *p)
-{
-	if (p == NULL)
-	{
-		ft_fprintf(2, "Malloc failed\n");
-		exit(1);
-	}
-}
 
 void	*xmalloc(size_t size)
 {
