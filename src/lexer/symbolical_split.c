@@ -6,16 +6,16 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:22:46 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/19 11:55:20 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/19 12:12:32 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-static void	allocate_word(int ii, char **word, char *s, int quot[])
+static void allocate_word(int ii, char **word, char *s, int quot[])
 {
-	int		length;
-	char	*set;
+	int length;
+	char *set;
 
 	length = 0;
 	set = ft_strdup("<>|&()");
@@ -32,7 +32,7 @@ static void	allocate_word(int ii, char **word, char *s, int quot[])
 	*word = xmalloc(length * sizeof(char) + 1);
 }
 
-static void	set_vars(int *count, int i_s[], int quot[])
+static void set_vars(int *count, int i_s[], int quot[])
 {
 	*count = 0;
 	i_s[0] = -1;
@@ -40,12 +40,12 @@ static void	set_vars(int *count, int i_s[], int quot[])
 	quot[1] = 0;
 }
 
-static void	helper(char *s, char *c, char **result)
+static void helper(char *s, char *c, char **result)
 {
-	int	count;
-	int	len;
-	int	i_s[2];
-	int	quot[2];
+	int count;
+	int len;
+	int i_s[2];
+	int quot[2];
 
 	len = ft_strlen(s);
 	set_vars(&count, i_s, quot);
@@ -55,7 +55,7 @@ static void	helper(char *s, char *c, char **result)
 		{
 			i_s[1] = 0;
 			allocate_word(i_s[0], &result[count], s, quot);
-			while ((!ft_strchr(c, s[i_s[0]])|| quot[1] || quot[0]) && s[i_s[0]])
+			while ((!ft_strchr(c, s[i_s[0]]) || quot[1] || quot[0]) && s[i_s[0]])
 			{
 				if (s[i_s[0]] == 39 && !quot[1])
 					quot[0] = !quot[0];
@@ -72,45 +72,42 @@ static void	helper(char *s, char *c, char **result)
 			result[count][0] = s[i_s[0]];
 			result[count++][1] = '\0';
 		}
-	}	
+	}
 	result[count] = 0;
 }
 
-static unsigned int	occ_c(const char *s, char *c)
+static unsigned int occ_c(char *s, char *c)
 {
-	int	i;
-	int	result;
-	int	in_c;
+	int i;
+	int result;
+	int quot[2];
 
-	i = -1;
-	result = 0;
-	in_c = 1;
+	i = 0;
+	result = 1;
 	if (s == NULL)
 		return (0);
-	while (s[++i])
+	quot[0] = 0;
+	quot[1] = 0;
+	while (s[i])
 	{
-		if (ft_strchr(c, s[i]))
-		{
-			if (!in_c)
+		if (s[i] == 39 && !quot[1])
+			quot[0] = !quot[0];
+		else if (s[i] == 34 && !quot[0])
+			quot[1] = !quot[1];
+		if (ft_strchr(c, s[i]) && !quot[0] && !quot[1])
 				result++;
-			in_c = 1;
-		}
-		if (in_c && !ft_strchr(c, s[i]))
-		{
-			result++;
-			in_c = 0;
-		}
+		i++;
 	}
 	return (result);
 }
 
-char	**symbolical_split(char *s, char *c)
+char **symbolical_split(char *s, char *c)
 {
-	char	**result;
+	char **result;
 
 	if (!s)
 		return (NULL);
-	result = xmalloc((occ_c(s, c) + 100) * sizeof(char *));
+	result = xmalloc((occ_c(s, c) + 2) * sizeof(char *));
 	if (!result)
 		return (NULL);
 	helper(s, c, result);
