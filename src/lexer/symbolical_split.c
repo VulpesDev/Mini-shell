@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:22:46 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/19 12:12:32 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/19 17:16:54 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,21 @@ static void helper(char *s, char *c, char **result)
 		}
 		if (s[i_s[0]])
 		{
-			result[count] = xmalloc(2 * sizeof(char *));
-			result[count][0] = s[i_s[0]];
-			result[count++][1] = '\0';
+			if (s[i_s[0] + 1] && ((s[i_s[0]] == '|' && s[i_s[0] + 1] == '|')
+					|| (s[i_s[0]] == '&' && s[i_s[0] + 1] == '&')))
+			{
+				result[count] = xmalloc(3 * sizeof(char *));
+				result[count][0] = s[i_s[0]];
+				result[count][1] = s[i_s[0] + 1];
+				result[count++][2] = '\0';
+				i_s[0]++;
+			}
+			else
+			{
+				result[count] = xmalloc(2 * sizeof(char *));
+				result[count][0] = s[i_s[0]];
+				result[count++][1] = '\0';
+			}
 		}
 	}
 	result[count] = 0;

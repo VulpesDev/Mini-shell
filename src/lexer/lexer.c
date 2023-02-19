@@ -6,11 +6,12 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:31:25 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 17:05:46 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/19 17:46:46 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "utils.h"
 
 t_token	*lexer(char *str)
 {
@@ -32,12 +33,12 @@ t_token	*lexer(char *str)
 		k = -1;
 		while (result2[++k])
 			if (ft_strchr(set, (int)*result2[k]))
-				token_add_back(&tokens, token_new(result2[k], 's'));
+				token_add_back(&tokens, token_new(ft_strdup(result2[k]), 's'));
 			else
-				token_add_back(&tokens, token_new(result2[k], 'w'));
+				token_add_back(&tokens, token_new(ft_strdup(result2[k]), 'w'));
+		dp_free(result2);
 	}
 	free(set);
-	free(result);
-	free(result2);
+	dp_free(result);
 	return (tokens);
 }

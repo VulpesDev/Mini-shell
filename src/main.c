@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:59:01 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 16:35:54 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/19 17:26:12 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void init_meta(t_meta *meta, char **envp)
 int	main(int argc, char **argv, char **envp)
 {
 	t_token *tokens;
+	t_token *tokens_start;
 	t_meta	meta;
 	char	*line;
 
@@ -42,6 +43,7 @@ int	main(int argc, char **argv, char **envp)
 		add_history(line);
 		parser(&meta, line);
 		tokens = lexer(line);
+		tokens_start = tokens;
 		while (tokens)
 		{
 			ft_printf("%s:", tokens->str);
@@ -52,6 +54,7 @@ int	main(int argc, char **argv, char **envp)
 			tokens = tokens->next;
 		}
 		executioner(&meta);
+		token_clear(&tokens_start);
 	}
 	return (0);
 }

@@ -6,12 +6,27 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:50 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/19 15:16:15 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/19 17:24:25 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "utils.h"
+#include "stdlib.h"
+
+void	token_clear(t_token **lst)
+{
+	t_token	*tmp;
+
+	while ((*lst))
+	{
+		tmp = (*lst)->next;
+		free((*lst)->str);
+		free((*lst));
+		(*lst) = tmp;
+	}
+	*lst = NULL;
+}
 
 t_token	*token_new(char *str, char type)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:18:24 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 14:27:27 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/19 17:46:14 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,14 @@ int	dp_size(char **str)
 	return (result);
 }
 
-int	dp_free(char **str)
+void	dp_free(char **str)
 {
-	int	result;
+	int	len;
 
-	result = 0;
-	while (str[result])
-		result++;
-	return (result);
+	len = dp_size(str);
+	while (--len + 1)
+		free(str[len]);
+	free(str);
 }
 
 char	**dp_cpy(char **str)
