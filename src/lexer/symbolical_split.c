@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:22:46 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/17 13:01:40 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/19 11:55:20 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,15 @@ static void	allocate_word(int ii, char **word, char *s, int quot[])
 
 	length = 0;
 	set = ft_strdup("<>|&()");
-	while ((!ft_strchr(set, s[ii]) || quot[1] || quot[0]) && s[ii] && ++length)
-		ii++;
+	if (quot[0])
+		while (s[ii] != 39 && s[ii] && ++length)
+			ii++;
+	else if (quot[1])
+		while (s[ii] != 34 && s[ii] && ++length)
+			ii++;
+	else
+		while (s[ii] && ++length)
+			ii++;
 	free(set);
 	*word = xmalloc(length * sizeof(char) + 1);
 }
@@ -36,11 +43,13 @@ static void	set_vars(int *count, int i_s[], int quot[])
 static void	helper(char *s, char *c, char **result)
 {
 	int	count;
+	int	len;
 	int	i_s[2];
 	int	quot[2];
 
+	len = ft_strlen(s);
 	set_vars(&count, i_s, quot);
-	while (s[++i_s[0]])
+	while (++i_s[0] < len)
 	{
 		if (!ft_strchr(c, s[i_s[0]]))
 		{
@@ -59,7 +68,7 @@ static void	helper(char *s, char *c, char **result)
 		}
 		if (s[i_s[0]])
 		{
-			result[count] = xmalloc(sizeof(char *));
+			result[count] = xmalloc(2 * sizeof(char *));
 			result[count][0] = s[i_s[0]];
 			result[count++][1] = '\0';
 		}
@@ -101,7 +110,7 @@ char	**symbolical_split(char *s, char *c)
 
 	if (!s)
 		return (NULL);
-	result = xmalloc((occ_c(s, c) + 1) * sizeof(char *));
+	result = xmalloc((occ_c(s, c) + 100) * sizeof(char *));
 	if (!result)
 		return (NULL);
 	helper(s, c, result);
