@@ -1,1 +1,0 @@
-Segfault: When using echo without arguments
