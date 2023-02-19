@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:38:06 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/16 14:49:25 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/19 15:06:35 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "minishell.h"
 #include "cmds.h"
 #include "utils.h"
+#include "expander.h"
 
 void parser(t_meta *meta, const char *str)
 {
@@ -29,5 +30,6 @@ void parser(t_meta *meta, const char *str)
 		strs = ft_split(str, ' '); //! if split == NULL - segv
 		meta->cmd = strs[0];
 		meta->cmd_args = &strs[1];
+		meta->cmd_args[0] = expand_variables(meta->cmd_args[0], meta->envp);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:05:15 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/16 21:18:57 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/19 15:11:36 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ char *expand_variables(char *str, char **envp)
 			while (str[i + 1] && str[i + 1] != '$' && !ft_isspace(str[i + 1]))
 				i++;
 			ft_memcpy((void *)&ret[j], exp, ft_strlen(exp));
-			free(exp);
 			j += ft_strlen(exp);
+			free(exp);
 		}
 		else
 			ret[j++] = str[i];
