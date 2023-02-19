@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   variable_test.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 18:18:24 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 14:18:16 by lmiehler         ###   ########.fr       */
+/*   Created: 2023/02/14 18:19:26 by lmiehler          #+#    #+#             */
+/*   Updated: 2023/02/19 14:20:04 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 #include <stdlib.h>
-
 char *gs_getenv(char *str, char **envp)
 {
 	char	*valuestr;
@@ -21,14 +21,12 @@ char *gs_getenv(char *str, char **envp)
 
 	valuestr = NULL;
 	env_var = ft_strjoin(str, "=");
-	malloc_check((void *)env_var);
 	i = 0;
 	while (envp[i])
 	{
 		if (!ft_strncmp(env_var, envp[i], ft_strlen(env_var)))
 		{
 			valuestr = ft_substr(envp[i], ft_strlen(env_var), ft_strlen(envp[i]));
-			malloc_check((void *)valuestr);
 			break ;
 		}
 		i++;
@@ -51,70 +49,58 @@ int ft_isspace(char c)
 	return (0);
 }
 
-void	malloc_check(void *p)
+char *evaluate_dollar(char *str, char **envp)
 {
-	if (p == NULL)
-	{
-		ft_fprintf(2, "Malloc failed\n");
-		exit(1);
-	}
-}
-
-void	*xmalloc(size_t size)
-{
-	void *p;
-
-	p = malloc(size);
-	if (!p)
-	{
-		ft_fprintf(2, "Malloc failed\n");
-		exit(1);
-	}
-	return (p);
-}
-
-int	dp_size(char **str)
-{
-	int	result;
-
-	result = 0;
-	while (str[result])
-		result++;
-	return (result);
-}
-
-int	dp_free(char **str)
-{
-	int	result;
-
-	result = 0;
-	while (str[result])
-		result++;
-	return (result);
-}
-
-char	**dp_cpy(char **str)
-{
-	char	**result;
-	int		len;
+	printf("str = %s\n", str);
+	char	*key;
+	char	*expansion;
 	int		i;
 
-	i = -1;
-	len = dp_size(str);
-	result = xmalloc(len * sizeof(char *) + 1);
-	while (++i < len)
-		result[i] = ft_strdup(str[i]);
-	return (result);
+	if (!str)
+		return (NULL);
+	i = 0;
+	if (str[i + 1] == '\0' || ft_isspace(str[i + 1]) || str[i + 1] == '$')
+		return (ft_strdup("$"));
+	while (str[i + 1] && str[i + 1] != '$' && !ft_isspace(str[i + 1]))
+		i++;
+	key = ft_substr(str, 1, i);
+	printf("key = %s\n", key);
+	expansion = gs_getenv(key, envp);
+	free(key);
+	if (!expansion)
+		return (ft_strdup(""));
+	return (expansion);
 }
 
-void	print_strs(char *str[])
+char *expand_variables(char *str, char **envp)
 {
-	int	i;
-
+	char *ret;
+	char *exp;
+	int i;
+	int j;
+	j = 0;
 	i = 0;
+
+	ret = malloc(100000);
 	while (str[i])
 	{
-		ft_printf("%s\n", str[i]);
+		if (str[i] == '$')
+		{
+			exp = evaluate_dollar(&str[i], envp);
+			while (str[i + 1] && str[i + 1] != '$' && !ft_isspace(str[i + 1]))
+				i++;
+			ft_memcpy((void *)&ret[j], exp, ft_strlen(exp));
+			j += ft_strlen(exp);
+		}
+		else
+			ret[j++] = str[i];
 		i++;
 	}
+	ret[j] = '\0';
+	return (ret);
+}
+
+int main(int argc, char **argv, char **envp)
+{
+	printf("OUT = {%s}\n", expand_variables(argv[1], envp));
 }

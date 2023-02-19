@@ -6,12 +6,13 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:33:03 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/13 15:25:32 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/16 19:42:44 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <stdlib.h>
 #include "libft.h"
 
 void	print_strs(char *str[])
