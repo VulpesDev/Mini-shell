@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:59:01 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 11:55:24 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/19 15:19:45 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void init_meta(t_meta *meta, char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
+	t_token *tokens;
 	t_meta	meta;
 	char	*line;
 
@@ -40,7 +41,16 @@ int	main(int argc, char **argv, char **envp)
 		line = readline("[Gigashell]% ");
 		add_history(line);
 		parser(&meta, line);
-		lexer(line);
+		tokens = lexer(line);
+		while (tokens)
+		{
+			ft_printf("%s:", tokens->str);
+			if (tokens->type == 'w')
+				ft_printf("%s\n", "word");
+			else if (tokens->type == 's')
+				ft_printf("%s\n", "symbol");
+			tokens = tokens->next;
+		}
 		executioner(&meta);
 	}
 	return (0);
