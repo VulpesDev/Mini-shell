@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:38:06 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/14 13:14:06 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/16 11:39:34 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void parser(t_meta *meta, const char *str)
 	char **strs;
 
 	//!Just pressing enter creates segv
+	//!MUST FREE strs on exit
 	// Temporary fix for if str == NULL
 	if (!str)
 	{

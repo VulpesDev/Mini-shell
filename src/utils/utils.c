@@ -6,7 +6,7 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:18:24 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/16 20:25:00 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/19 14:18:16 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,40 @@ void	*xmalloc(size_t size)
 		exit(1);
 	}
 	return (p);
+}
+
+int	dp_size(char **str)
+{
+	int	result;
+
+	result = 0;
+	while (str[result])
+		result++;
+	return (result);
+}
+
+int	dp_free(char **str)
+{
+	int	result;
+
+	result = 0;
+	while (str[result])
+		result++;
+	return (result);
+}
+
+char	**dp_cpy(char **str)
+{
+	char	**result;
+	int		len;
+	int		i;
+
+	i = -1;
+	len = dp_size(str);
+	result = xmalloc(len * sizeof(char *) + 1);
+	while (++i < len)
+		result[i] = ft_strdup(str[i]);
+	return (result);
 }
 
 void	print_strs(char *str[])
