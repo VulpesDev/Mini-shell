@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:35:50 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/14 18:00:35 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/17 10:48:58 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,17 @@
 
 typedef struct s_token
 {
-	char *str;
-	int	type;
+	char	*str;
+	int		type;
+	void	*next;
 }t_token;
 
 typedef struct s_meta
 {
-	char **envp;
-	int	exit_status;
-	char *cmd;
-	char **cmd_args;
+	char	**envp;
+	int		exit_status;
+	char	*cmd;
+	char	**cmd_args;
 	t_list	*tokens;
 }t_meta;
 

@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:59:01 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/16 11:13:39 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/19 11:55:24 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "cmds.h"
 #include "executioner.h"
 #include "utils.h"
+#include "lexer.h"
 
 void init_meta(t_meta *meta, char **envp)
 {
@@ -39,6 +40,7 @@ int	main(int argc, char **argv, char **envp)
 		line = readline("[Gigashell]% ");
 		add_history(line);
 		parser(&meta, line);
+		lexer(line);
 		executioner(&meta);
 	}
 	return (0);
