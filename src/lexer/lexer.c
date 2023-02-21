@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:31:25 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 17:46:46 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/21 11:05:23 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_token	*lexer(char *str)
 	while (result[++i])
 	{
 		result2 = symbolical_split(result[i], set);
-		//*for displaying
 		k = -1;
 		while (result2[++k])
 			if (ft_strchr(set, (int)*result2[k]))

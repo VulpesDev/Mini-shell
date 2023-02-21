@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:22:46 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/19 17:16:54 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/21 11:04:43 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,11 @@ static void helper(char *s, char *c, char **result)
 	result[count] = 0;
 }
 
-static unsigned int occ_c(char *s, char *c)
+static unsigned int	occ_c(char *s, char *c)
 {
-	int i;
-	int result;
-	int quot[2];
+	int	i;
+	int	result;
+	int	quot[2];
 
 	i = 0;
 	result = 1;
@@ -107,7 +107,7 @@ static unsigned int occ_c(char *s, char *c)
 		else if (s[i] == 34 && !quot[0])
 			quot[1] = !quot[1];
 		if (ft_strchr(c, s[i]) && !quot[0] && !quot[1])
-				result++;
+			result++;
 		i++;
 	}
 	return (result);
