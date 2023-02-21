@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:31:27 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/17 12:08:23 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/21 11:39:45 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,22 @@
 # include "utils.h"
 # include <stdlib.h>
 
-void	lexer(char *str);
+t_token	*lexer(char *str);
 
-char	**lexical_split(char *s, char c);
+char	**lexical_split(char *s);
+
+void	split_spaces(char *s, char **result);
 
 char	**symbolical_split(char *s, char *c);
+
+void	split_symbol(char *s, char *c, char **result);
+
+t_token	*token_new(char *str, char type);
+
+t_token	*token_last(t_token *lst);
+
+void	token_clear(t_token **lst);
+
+void	token_add_back(t_token **lst, t_token *new_elem);
 
 #endif

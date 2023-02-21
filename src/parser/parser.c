@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:38:06 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/16 14:49:25 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/19 15:01:03 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "minishell.h"
 #include "cmds.h"
 #include "utils.h"
+#include "expander.h"
 
 void parser(t_meta *meta, const char *str)
 {

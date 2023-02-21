@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:35:50 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/17 10:48:58 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/19 15:16:01 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef struct s_token
 {
 	char	*str;
-	int		type;
+	char	type;
 	void	*next;
 }t_token;
 

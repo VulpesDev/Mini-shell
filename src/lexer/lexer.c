@@ -6,45 +6,37 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:31:25 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/17 13:02:48 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/21 11:45:11 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "utils.h"
 
-t_token	*token_new(void *str, int type)
+t_token	*lexer(char *str)
 {
-	t_token	*new;
-
-	new = xmalloc(sizeof(t_token));
-	if (!new)
-		return (NULL);
-	new->str = str;
-	new->next = NULL;
-	return (new);
-}
-
-void	lexer(char *str)
-{
-	char	**result;
-	char	**result2;
+	t_token	*tokens;
+	char	**r;
+	char	**r2;
 	char	*set;
-	int		i;
-	int		k;
+	int		i_s[2];
 
+	tokens = 0;
 	set = ft_strdup("<>|&()");
-	result = lexical_split(str, ' ');
-	i = -1;
-	while (result[++i])
+	r = lexical_split(str);
+	i_s[0] = -1;
+	while (r[++i_s[0]])
 	{
-		result2 = symbolical_split(result[i], set);
-		k = -1;
-		while (result2[++k])
-		{
-			ft_printf("%d:%s\n", k, result2[k]);
-		}
+		r2 = symbolical_split(r[i_s[0]], set);
+		i_s[1] = -1;
+		while (r2[++i_s[1]])
+			if (ft_strchr(set, (int)*r2[i_s[1]]))
+				token_add_back(&tokens, token_new(ft_strdup(r2[i_s[1]]), 's'));
+		else
+			token_add_back(&tokens, token_new(ft_strdup(r2[i_s[1]]), 'w'));
+		dp_free(r2);
 	}
 	free(set);
-	free(result);
-	free(result2);
+	dp_free(r);
+	return (tokens);
 }

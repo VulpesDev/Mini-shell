@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_variables.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:05:15 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/16 21:18:57 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:40:33 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char *expand_variables(char *str, char **envp)
 
 	j = 0;
 	i = 0;
-	ret = xmalloc(100000);
+	ret = xmalloc(1000000);
 	while (str[i])
 	{
 		if (str[i] == '$')
