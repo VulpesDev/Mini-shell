@@ -6,12 +6,13 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:09:50 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/21 11:45:49 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:24:48 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
+/*counts the space that the lexical func needs*/
 static unsigned int	occ_c(const char *s)
 {
 	int	i;

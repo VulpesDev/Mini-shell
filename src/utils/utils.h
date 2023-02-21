@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:17:56 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 14:20:27 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:21:32 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ char *gs_getenv(char *str, char **envp);
 
 int ft_isspace(char c);
 
+/*gets the length of a double pointer(dp) array*/
 int	dp_size(char **str);
 
+/*duplicates a double pointer and returns a pointer to
+the duplicate*/
 char	**dp_cpy(char **str);
 
+/*frees a double pointer array*/
 int	dp_free(char **str);
 
 #endif

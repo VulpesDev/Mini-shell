@@ -6,13 +6,16 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:31:25 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/21 11:45:11 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:22:26 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "utils.h"
 
+/*lexer takes the str passed by readline
+and creates tokens out of it. The return value
+is either NULL in case of error or the token list.*/
 t_token	*lexer(char *str)
 {
 	t_token	*tokens;
