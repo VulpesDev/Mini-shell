@@ -6,12 +6,11 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:09:50 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/21 11:10:58 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/21 11:45:49 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
-#include "utils.h"
 
 static unsigned int	occ_c(const char *s)
 {

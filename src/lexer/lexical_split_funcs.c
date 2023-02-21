@@ -6,12 +6,11 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:25:07 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/21 11:10:52 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/21 11:46:09 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
-#include "utils.h"
 
 static void	allocate_word(int ii, char **word, char *s)
 {
@@ -64,7 +63,7 @@ void	split_spaces(char *s, char **result)
 		{
 			i_s[1] = 0;
 			allocate_word(i_s[0], &result[count], s);
-			while ((!ft_isspace(s[i_s[0]])|| quot[1] || quot[0]) && s[i_s[0]])
+			while ((!ft_isspace(s[i_s[0]]) || quot[1] || quot[0]) && s[i_s[0]])
 			{
 				set_quotes(s, i_s, quot);
 				result[count][i_s[1]++] = s[i_s[0]];

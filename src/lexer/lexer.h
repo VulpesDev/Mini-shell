@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:31:27 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/21 11:09:20 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/21 11:39:45 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	**lexical_split(char *s);
 void	split_spaces(char *s, char **result);
 
 char	**symbolical_split(char *s, char *c);
+
+void	split_symbol(char *s, char *c, char **result);
 
 t_token	*token_new(char *str, char type);
 
