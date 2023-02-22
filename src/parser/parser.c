@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:38:06 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/22 16:51:46 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:55:55 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,7 @@
 #include "parser.h"
 #include <stdlib.h>
 
-// int	handle_files(t_meta *meta, t_token **tokens)
-// {
-// 	if (!ft_strncmp((*tokens)->str, ">>", 2))
-// 	{
-// 		(*tokens) = (*tokens)->next;
-// 		meta->outfile.file = ft_strdup((*tokens)->str);
-// 		meta->outfile.append = 1;
-// 	}
-// 	else if (!ft_strncmp((*tokens)->str, "<<", 2))
-// 	{
-// 		(*tokens) = (*tokens)->next;
-// 		meta->infile.file = ft_strdup((*tokens)->str);
-// 		meta->infile.append = 1;
-// 	}
-// 	else if (!ft_strncmp((*tokens)->str, "<", 2))
-// 	{
-// 		(*tokens) = (*tokens)->next;
-// 		meta->infile.file = ft_strdup((*tokens)->str);
-// 		meta->infile.append = 0;
-// 	}
-// 	else if (!ft_strncmp((*tokens)->str, ">", 2))
-// 	{
-// 		(*tokens) = (*tokens)->next;
-// 		meta->outfile.file = ft_strdup((*tokens)->str);
-// 		meta->outfile.append = 0;
-// 	}
-// 	else
-// 		return (0);
-// 	return (1);
-// }
-
-int	handle_files(t_meta *meta, t_token **tokens)
+static int	handle_files(t_meta *meta, t_token **tokens)
 {
 	if (!ft_strncmp((*tokens)->str, ">>", 2)
 		|| !ft_strncmp((*tokens)->str, ">", 2))
@@ -72,7 +41,7 @@ int	handle_files(t_meta *meta, t_token **tokens)
 	return (1);
 }
 
-void	handle_symb(t_meta *meta, t_token **tokens, char **words, int bool_s[])
+static void	handle_symb(t_meta *meta, t_token **tokens, char **words, int bool_s[])
 {
 	int	i;
 
@@ -92,7 +61,7 @@ void	handle_symb(t_meta *meta, t_token **tokens, char **words, int bool_s[])
 	}
 }
 
-void	handle_words(t_token **tokens, char **words)
+static void	handle_words(t_token **tokens, char **words)
 {
 	int	i;
 
