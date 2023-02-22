@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:42:06 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/22 12:01:00 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/22 12:43:14 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "minishell.h"
 
+/*split the tokens into code blocks separetaed by
+the symbols*/
 t_code_block	*parser(t_meta *meta, t_token *tokens);
 
 void			block_clear(t_code_block **lst);
