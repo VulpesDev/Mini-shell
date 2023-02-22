@@ -6,29 +6,45 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:38:06 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 15:01:03 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/22 12:16:36 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "minishell.h"
-#include "cmds.h"
 #include "utils.h"
-#include "expander.h"
+#include "parser.h"
 
-void parser(t_meta *meta, const char *str)
+t_code_block	*parser(t_meta *meta, t_token *tokens)
 {
-	char **strs;
+	t_code_block	*blocks;
+	int				symbol;
+	char			**words;
+	int				i;
 
-	//!Just pressing enter creates segv
-	//!MUST FREE strs on exit
-	// Temporary fix for if str == NULL
-	if (!str)
-		strs = NULL;
-	else
+	blocks = 0;
+	while (tokens)
 	{
-		strs = ft_split(str, ' '); //! if split == NULL - segv
-		meta->cmd = strs[0];
-		meta->cmd_args = &strs[1];
+		words = xmalloc(100000 * sizeof(char *));
+		i = 0;
+		symbol = 0;
+		ft_printf("token_type: %c ; token_content: %s\n", tokens->type, tokens->str);
+		if (tokens->type == 's')
+		{
+			words[i++] = ft_strdup(tokens->str);
+			words[i] = 0;
+			symbol = 1;
+		}
+		else if (tokens->type == 'w')
+		{
+			while (tokens && tokens->type != 's')
+			{
+				words[i++] = ft_strdup(tokens->str);
+				tokens = tokens->next;
+			}
+			words[i] = 0;
+		}
+		block_add_back(&blocks, block_new(words, symbol));
+		if (tokens && symbol)
+			tokens = tokens->next;
 	}
+	return (blocks);
 }
