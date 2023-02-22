@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:35:50 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/22 12:10:55 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:21:15 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define MINISHELL_H
 
 # include "libft.h"
+
+typedef struct s_redirection
+{
+	char	*file;
+	int		append;
+}t_redirection;
 
 typedef struct s_code_block
 {
@@ -34,11 +40,13 @@ typedef struct s_token
 
 typedef struct s_meta
 {
-	char	**envp;
-	int		exit_status;
-	char	*cmd;
-	char	**cmd_args;
-	t_list	*tokens;
+	int				exit_status;
+	char			**envp;
+	char			*cmd;
+	char			**cmd_args;
+	t_list			*tokens;
+	t_redirection	infile;
+	t_redirection	outfile;
 }t_meta;
 
 #endif
