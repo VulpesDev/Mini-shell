@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:17:56 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/21 13:21:32 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/21 14:54:42 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ the duplicate*/
 char	**dp_cpy(char **str);
 
 /*frees a double pointer array*/
-int	dp_free(char **str);
+int		dp_free(char **str);
 
 #endif

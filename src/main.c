@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:59:01 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 17:26:12 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/22 12:42:10 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_token *tokens;
 	t_token *tokens_start;
+	t_code_block	*blocks;
+	t_code_block	*blocks_start;
 	t_meta	meta;
 	char	*line;
 
@@ -41,20 +43,23 @@ int	main(int argc, char **argv, char **envp)
 	{
 		line = readline("[Gigashell]% ");
 		add_history(line);
-		parser(&meta, line);
 		tokens = lexer(line);
-		tokens_start = tokens;
-		while (tokens)
+		blocks = parser(&meta, tokens);
+		blocks_start = blocks;
+		while (blocks)
 		{
-			ft_printf("%s:", tokens->str);
-			if (tokens->type == 'w')
-				ft_printf("   %s\n", "word");
-			else if (tokens->type == 's')
-				ft_printf("   %s\n", "symbol");
-			tokens = tokens->next;
+			int i = -1;
+			
+			ft_printf("code block\n---------\n");
+			ft_printf("symbol:  %i\n", blocks->symbol);
+			while (blocks->words[++i])
+				ft_printf("words:  %i-%s\n", i, blocks->words[i]);
+			blocks = blocks->next;
+			ft_printf("\n---------\n\n");
 		}
 		executioner(&meta);
-		token_clear(&tokens_start);
+		token_clear(&tokens);
+		block_clear(&blocks_start);
 	}
 	return (0);
 }

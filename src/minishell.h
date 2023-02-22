@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:35:50 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/21 13:22:40 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/22 12:10:55 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define MINISHELL_H
 
 # include "libft.h"
+
+typedef struct s_code_block
+{
+	int				symbol;
+	char			**words;
+	void			*next;
+}t_code_block;
 
 /*str is the content.
 type could be either 's' or 'w'
