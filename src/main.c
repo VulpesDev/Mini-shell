@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:59:01 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/22 12:42:10 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:33:38 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ void init_meta(t_meta *meta, char **envp)
 	meta->exit_status = 0;
 	meta->cmd = NULL;
 	meta->cmd_args = NULL;
+	meta->infile.file = NULL;
+	meta->outfile.file = NULL;
+	meta->infile.append = 0;
+	meta->outfile.append = 0;
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -57,6 +61,8 @@ int	main(int argc, char **argv, char **envp)
 			blocks = blocks->next;
 			ft_printf("\n---------\n\n");
 		}
+		ft_printf("infile: %s\nappend: %d\noutfile: %s\nappend: %d\n", meta.infile.file,
+			meta.infile.append, meta.outfile.file, meta.outfile.append);
 		executioner(&meta);
 		token_clear(&tokens);
 		block_clear(&blocks_start);
