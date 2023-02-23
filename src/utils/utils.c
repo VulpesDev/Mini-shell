@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:18:24 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 17:46:14 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:46:25 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,15 @@ int ft_isspace(char c)
 	return (0);
 }
 
+
+char	is_quote(char c)
+{
+	if (c == '\'')
+		return ('\'');
+	if (c == '\"')
+		return ('\"');
+	return (0);
+}
 
 void	*xmalloc(size_t size)
 {
