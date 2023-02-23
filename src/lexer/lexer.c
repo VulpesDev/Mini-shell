@@ -3,20 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:31:25 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/21 13:22:26 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/23 23:23:20 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "utils.h"
+#include "expander.h"
 
 /*lexer takes the str passed by readline
 and creates tokens out of it. The return value
 is either NULL in case of error or the token list.*/
-t_token	*lexer(char *str)
+
+void	expand_token(t_token **lst, char *str, char type, char **envp)
+{
+	//ft_printf("hrer\n");
+	//ft_printf("str = %s\n", str);
+	int		i;
+	char	**strs;
+
+	if (type == 's')
+	{
+		//ft_printf("is symbol str = %s\n", str);
+		token_add_back(lst, token_new(ft_strdup(str), 's'));
+		return ;
+	}
+	strs = expander(str, envp);
+	//print_strs(strs);
+	i = 0;
+	while(strs[i])
+	{
+		token_add_back(lst, token_new(ft_strdup(strs[i]), 'w'));
+		i++;
+	}
+	//ft_printf("end\n");
+}
+
+t_token *expand_tokens(t_token **tk, char **envp)
+{
+	t_token	*lst;
+	t_token	*cur;
+
+	cur = *tk;
+	lst = NULL;
+	while (cur != NULL)
+	{
+		expand_token(&lst, cur->str, cur->type, envp);
+		cur = cur->next;
+	}
+	return (lst);
+}
+
+t_token	*lexer(char *str, char **envp)
 {
 	t_token	*tokens;
 	char	**r;
@@ -41,5 +82,5 @@ t_token	*lexer(char *str)
 	}
 	free(set);
 	dp_free(r);
-	return (tokens);
+	return (expand_tokens(&tokens, envp));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:31:27 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/21 13:22:45 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/23 22:31:50 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "utils.h"
 # include <stdlib.h>
 
-t_token	*lexer(char *str);
+t_token	*lexer(char *str, char **envp);
 
 /*first part of the lexer, splits the str
 taking spaces/tabs...etc. as a delimiter

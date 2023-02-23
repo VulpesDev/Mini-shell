@@ -6,7 +6,7 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 15:16:54 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/23 18:12:41 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/23 22:53:03 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,19 @@ char	**expander(char *str, char **envp)
 
 	if (!contains_wildcard(str))
 	{
+		//ft_printf("In expander str = %s\n", str);
 		str = expand_variables(str, envp);
+		//ft_printf("EXFIN = %s\n", str);
 		expansions = xmalloc(2 * sizeof(char *));
 		expansions[0] = remove_quotes(str);
 		expansions[1] = NULL;
+		//ft_printf("Expansion = %s\n", expansions[0]);
 		return (expansions);
 	}
-	ft_printf("does contain wildcard\n");
+	//ft_printf("does contain wildcard\n");
 	str = expand_variables(str, envp);
-	ft_printf("exvar = {%s}\n", str);
+	//ft_printf("exvar = {%s}\n", str);
 	expansions = expand_wildcards(str);
-	ft_printf("expander finished\n");
+	//ft_printf("expander finished\n");
 	return (expansions);
 }

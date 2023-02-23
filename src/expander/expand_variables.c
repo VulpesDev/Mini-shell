@@ -6,7 +6,7 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:05:15 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/23 18:23:57 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/23 22:52:44 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "minishell.h"
 #include "libft.h"
 #include "utils.h"
-
-// Check header for description
 
 int	ft_is_terminator(char c)
 {
