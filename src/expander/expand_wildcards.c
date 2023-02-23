@@ -6,7 +6,7 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 20:20:00 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/23 18:22:56 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/23 22:52:54 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include <dirent.h>
 #include "libft.h"
 #include "utils.h"
-
-// Check header for description
 
 int	is_oc_quote(char *str, int index)
 {
@@ -73,10 +71,6 @@ int	is_quoted(char *str, int index)
 	return(0);
 }
 
-//&& is_not_quoted(pattern, p)
-	//if (is_oc_quote(pattern, p))
-	//	match(pattern, str, p + 1, s);
-
 static int	match(char *pattern, char *str, int p, int s)
 {
 	if (pattern[p] == '\0')
@@ -116,7 +110,7 @@ char	**expand_wildcards(char *pattern)
 		{
 			strs[j++] = ft_strdup(dirent->d_name);
 			malloc_check(strs[j - 1]);
-			ft_printf("match found {%s}\n", strs[j - 1]);
+			//ft_printf("match found {%s}\n", strs[j - 1]);
 		}
 		dirent = readdir(dir);
 	}
