@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:22:46 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/21 11:43:22 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:23:52 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	set_vars(int *count, int i_s[], int quot[])
 	quot[1] = 0;
 }
 
-void	include_symbols(int *count, int i_s[], char **result, char *s)
+static void	include_symbols(int *count, int i_s[], char **result, char *s)
 {
 	if (s[i_s[0]])
 	{

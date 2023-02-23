@@ -6,12 +6,13 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:26:57 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/21 11:45:42 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:23:28 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
+/*counts the space that the symbolical func needs*/
 static unsigned int	occ_c(char *s, char *c)
 {
 	int	i;
