@@ -6,7 +6,7 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:17:56 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 14:20:27 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:46:32 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ int	dp_size(char **str);
 char	**dp_cpy(char **str);
 
 int	dp_free(char **str);
+
+char	is_quote(char c);
 
 #endif

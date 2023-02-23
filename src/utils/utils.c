@@ -6,7 +6,7 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:18:24 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 14:27:27 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:46:25 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,15 @@ int ft_isspace(char c)
 }
 
 
+char	is_quote(char c)
+{
+	if (c == '\'')
+		return ('\'');
+	if (c == '\"')
+		return ('\"');
+	return (0);
+}
+
 void	*xmalloc(size_t size)
 {
 	void *p;
@@ -84,14 +93,14 @@ int	dp_size(char **str)
 	return (result);
 }
 
-int	dp_free(char **str)
+void	dp_free(char **str)
 {
-	int	result;
+	int	len;
 
-	result = 0;
-	while (str[result])
-		result++;
-	return (result);
+	len = dp_size(str);
+	while (--len + 1)
+		free(str[len]);
+	free(str);
 }
 
 char	**dp_cpy(char **str)

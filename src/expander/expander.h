@@ -6,7 +6,7 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:04:58 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/16 21:19:49 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:45:24 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,9 @@ char	*expand_variables(char *str, char **envp);
  * @return String of strings which holds all strings that matched the pattern
 */
 char	**expand_wildcards(char *pattern);
+
+int	contains_wildcard(char *str);
+char	**expander(char *str, char **envp);
+char	*remove_quotes(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:38:06 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 15:06:35 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:24:41 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,17 @@ void parser(t_meta *meta, const char *str)
 		strs = NULL;
 	else
 	{
+		char **tmp;
 		strs = ft_split(str, ' '); //! if split == NULL - segv
 		meta->cmd = strs[0];
 		meta->cmd_args = &strs[1];
-		meta->cmd_args[0] = expand_variables(meta->cmd_args[0], meta->envp);
+		//ft_printf("Wildcards\n");
+		//print_strs(expand_wildcards(meta->cmd_args[0]));
+		tmp = expander(meta->cmd_args[0], meta->envp);
+		ft_printf("====EXPANDED====\n");
+		print_strs(tmp);
+		ft_printf("====EXPAND FIN====\n");
+		meta->cmd_args[0] = tmp[0];
+		//meta->cmd_args[0] = remove_quotes(meta->cmd_args[0]);
 	}
 }
