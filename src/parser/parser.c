@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:38:06 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/24 13:23:27 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:52:25 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static int	handle_files(t_meta *meta, t_token **tokens)
 	return (1);
 }
 
-static void	handle_symb(t_meta *meta, t_token **tokens, char **words, int bool_s[])
+//hs = handle symbols
+static void	hs(t_meta *meta, t_token **tokens, char **words, int bool_s[])
 {
 	int	i;
 
@@ -81,13 +82,17 @@ t_code_block	*parser(t_meta *meta, t_token *tokens)
 	int				bool_s[2];
 
 	blocks = 0;
+	meta->infile.file = 0;
+	meta->outfile.file = 0;
+	meta->infile.append = 0;
+	meta->outfile.append = 0;
 	while (tokens)
 	{
 		bool_s[1] = 0;
 		words = xmalloc(100000 * sizeof(char *));
 		bool_s[0] = 0;
 		if (tokens->type == 's')
-			handle_symb(meta, &tokens, words, bool_s);
+			hs(meta, &tokens, words, bool_s);
 		else if (tokens->type == 'w')
 			handle_words(&tokens, words);
 		if (!bool_s[1])
