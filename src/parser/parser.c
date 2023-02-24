@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:38:06 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/23 18:24:41 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:23:27 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@ static int	handle_files(t_meta *meta, t_token **tokens)
 	if (!ft_strncmp((*tokens)->str, ">>", 2)
 		|| !ft_strncmp((*tokens)->str, ">", 2))
 	{
+		if (!ft_strncmp((*tokens)->str, ">", 2))
+			meta->outfile.append = 0;
+		else if (!ft_strncmp((*tokens)->str, ">>", 2))
+			meta->outfile.append = 1;
 		(*tokens) = (*tokens)->next;
 		meta->outfile.file = ft_strdup((*tokens)->str);
-		if (!ft_strncmp((*tokens)->str, ">>", 2))
-			meta->infile.append = 1;
-		else
-			meta->infile.append = 0;
 	}
 	else if (!ft_strncmp((*tokens)->str, "<<", 2)
 		|| !ft_strncmp((*tokens)->str, "<", 2))
 	{
+		if (!ft_strncmp((*tokens)->str, "<", 2))
+			meta->infile.append = 0;
+		else if (!ft_strncmp((*tokens)->str, "<<", 2))
+			meta->infile.append = 1;
 		(*tokens) = (*tokens)->next;
 		meta->infile.file = ft_strdup((*tokens)->str);
-		if (!ft_strncmp((*tokens)->str, "<<", 2))
-			meta->infile.append = 1;
-		else
-			meta->infile.append = 0;
 	}
 	else
 		return (0);
