@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 10:41:11 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/14 13:22:53 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/26 15:38:31 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	gs_pwd_error(const char *message)
 	return (1);
 }
 
-int	gs_pwd(t_meta *meta)
+int	gs_pwd(char **cmd_args)
 {
 	char	*buf;
 
-	if (*meta->cmd_args)
+	if (*cmd_args)
 		return gs_pwd_error("too many arguments");
 	buf = xmalloc(PWD_SIZE * sizeof(char));
 	getcwd(buf, PWD_SIZE);
