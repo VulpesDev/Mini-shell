@@ -13,7 +13,7 @@ LIB_DEPS := libft.a libreadline.a
 LIB_DIRS := libft
 
 # Includes
-INC_DIRS := libft/include src src/parser src/cmds src/executioner src/utils src/lexer src/expander
+INC_DIRS := libft/include src src/parser src/cmds src/executioner src/utils src/lexer src/expander src/signals
 
 # Directories
 SRC_DIR := src

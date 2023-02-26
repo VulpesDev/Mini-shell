@@ -6,7 +6,7 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 20:20:00 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/23 22:52:54 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/25 14:44:26 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,6 @@ char	**expand_wildcards(char *pattern)
 	}
 	strs[j] = NULL;
 	closedir (dir);
+	free(pattern);
 	return (strs);
 }
