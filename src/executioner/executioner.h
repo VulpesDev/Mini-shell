@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:15:20 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/25 18:04:30 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:52:29 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,17 @@
 
 # include "minishell.h"
 
-int	executioner(t_meta *meta);
+int		exec_cmd(char *cmd, char **cmd_args, char **envp);
 
-char	**get_paths(t_meta *meta);
+char	**get_paths(char **envp);
+
+typedef struct s_vars
+{
+	int		i;
+	int		child_pid;
+	int		child_status;
+	char	*path_cmd;
+	char	**paths;
+}t_vars;
 
 #endif

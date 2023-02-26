@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:31:27 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/23 22:31:50 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:40:18 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ void	token_clear(t_token **lst);
 
 /*adds a token to the back of a token list*/
 void	token_add_back(t_token **lst, t_token *new_elem);
+
+int	validate(t_code_block *blocks);
 
 #endif

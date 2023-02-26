@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:35:17 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/14 13:45:40 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/26 15:33:24 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ int	gs_chdir_protect(char	*path)
 	return (0);
 }
 
-int	gs_cd(t_meta *meta)
+int	gs_cd(char	**cmd_args)
 {
-	if (meta->cmd_args[1])
+	if (cmd_args[1])
 	{
 		ft_fprintf(2, "cd: too many arguments\n");
 		return (1);
 	}
-	else if (!meta->cmd_args[0])
+	else if (!cmd_args[0])
 		return (gs_chdir_protect(getenv("HOME")));
-	else if (!ft_strncmp("~", meta->cmd_args[0], 2))
+	else if (!ft_strncmp("~", cmd_args[0], 2))
 		return (gs_chdir_protect(getenv("HOME")));
 	else
-		return (gs_chdir_protect(meta->cmd_args[0]));
+		return (gs_chdir_protect(cmd_args[0]));
 }
