@@ -6,7 +6,7 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:31:25 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/23 23:23:20 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/25 14:31:41 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	expand_token(t_token **lst, char *str, char type, char **envp)
 		token_add_back(lst, token_new(ft_strdup(strs[i]), 'w'));
 		i++;
 	}
+	free_strs(strs);
 	//ft_printf("end\n");
 }
 
@@ -54,6 +55,7 @@ t_token *expand_tokens(t_token **tk, char **envp)
 		expand_token(&lst, cur->str, cur->type, envp);
 		cur = cur->next;
 	}
+	token_clear(tk);
 	return (lst);
 }
 
