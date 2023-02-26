@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:59:01 by lmiehler          #+#    #+#             */
 /*   Updated: 2023/02/25 17:51:20 by lmiehler         ###   ########.fr       */
@@ -119,15 +119,12 @@ int	main(int argc, char **argv, char **envp)
 		print_tokens(tokens);
 		blocks = parser(&meta, tokens);
 		blocks_start = blocks;
+		meta.cmd = blocks->words[0];
+		meta.cmd_args = blocks->words;
+		ft_printf("\n\n");
 		while (blocks)
 		{
 			print_block(blocks);
-			// int i = -1;
-			
-			// ft_printf("code block\n---------\n");
-			// ft_printf("symbol:  %i\n", blocks->symbol);
-			// while (blocks->words[++i])
-			// 	ft_printf("words:  %i-%s\n", i, blocks->words[i]);
 			blocks = blocks->next;
 		}
 		// /print_io_config(&meta);
