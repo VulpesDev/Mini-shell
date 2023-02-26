@@ -6,7 +6,7 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:18:24 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/22 16:46:25 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/26 14:19:59 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int ft_isspace(char c)
 	}
 	return (0);
 }
-
 
 char	is_quote(char c)
 {
@@ -127,4 +126,27 @@ void	print_strs(char *str[])
 		ft_printf("%s\n", str[i]);
 		i++;
 	}
+}
+
+int	is_unclosed_quote(char *str)
+{
+	int		i;
+	char	openq;
+
+	i = 0;
+	openq = 0;
+	while (str[i])
+	{
+		if (openq == 0)
+		{
+			openq = is_quote(str[i]);
+		}
+		else
+		{
+			if (openq == is_quote(str[i]))
+				openq = 0;
+		}
+		i++;
+	}
+	return(openq);
 }

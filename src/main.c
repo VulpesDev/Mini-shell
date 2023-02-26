@@ -18,6 +18,7 @@
 #include "cmds.h"
 #include "executioner.h"
 #include "utils.h"
+#include "signals.h"
 #include "lexer.h"
 
 void init_meta(t_meta *meta, char **envp)
@@ -88,8 +89,8 @@ void	print_tokens(t_token *tokens)
 	while (cur)
 	{
 		ft_printf("\n===Token===\n");
-		ft_printf("Type: %c\n", cur->type);
-		ft_printf("Str: %s\n", cur->str);
+		ft_printf("Type: {%c}\n", cur->type);
+		ft_printf("Str: {%s}\n", cur->str);
 		cur = cur->next;
 	}
 }
@@ -105,10 +106,15 @@ int	main(int argc, char **argv, char **envp)
 	char	*line;
 
 	init_meta(&meta, envp);
+	init_signals();
 	ft_printf("Hi Mom\n");
 	while (1)
 	{
 		line = readline("\033[0;31m[Gigashell]\033[0m% ");
+		if (line == NULL) // ctrl-D handling
+			exit(0);
+		if (!ft_strncmp(line, "exit", 5))
+			exit(0);
 		add_history(line);
 		tokens = lexer(line, envp);
 		//print_tokens(tokens);

@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executioner.c                                      :+:      :+:    :+:   */
+/*   signals.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:38:16 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/26 15:25:34 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/02/25 17:11:37 by lmiehler          #+#    #+#             */
+/*   Updated: 2023/02/25 17:11:56 by lmiehler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//? Add a return value to the executioner
-int	executioner()
-{
-	
-}
+#ifndef SIGNALS_H
+# define SIGNALS_H
+
+void	init_signals();
+
+#endif

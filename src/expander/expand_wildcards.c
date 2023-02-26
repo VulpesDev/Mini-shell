@@ -116,5 +116,6 @@ char	**expand_wildcards(char *pattern)
 	}
 	strs[j] = NULL;
 	closedir (dir);
+	free(pattern);
 	return (strs);
 }
