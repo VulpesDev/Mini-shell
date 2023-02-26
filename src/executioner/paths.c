@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executioner.h                                      :+:      :+:    :+:   */
+/*   paths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 18:15:20 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/25 18:04:30 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/02/25 14:53:12 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/02/25 16:15:52 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTIONER_H
-# define EXECUTIONER_H
+#include "minishell.h"
+#include "utils.h"
+#include <stdlib.h>
 
-# include "minishell.h"
+char	**get_paths(t_meta *meta)
+{
+	int		i;
+	char	*temp;
+	char	*path;
+	char	**result;
 
-int	executioner(t_meta *meta);
-
-char	**get_paths(t_meta *meta);
-
-#endif
+	path = gs_getenv("PATH", meta->envp);
+	result = ft_split(path, ':');
+	i = -1;
+	while (result[++i])
+	{
+		temp = ft_strdup(result[i]);
+		free(result[i]);
+		result[i] = ft_strjoin(temp, "/");
+		free(temp);
+	}
+	return (result);
+}
