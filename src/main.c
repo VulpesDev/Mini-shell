@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:59:01 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/26 18:45:27 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:56:34 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,23 +118,28 @@ int	main(int argc, char **argv, char **envp)
 		add_history(line);
 		tokens = lexer(line, envp);
 		//print_tokens(tokens);
-		blocks = parser(&meta, tokens);
-		validate(blocks);
-		blocks_start = blocks;
-		meta.cmd = blocks->words[0];
-		meta.cmd_args = &(blocks->words[1]);
-		ft_printf("\n\n");
-		// while (blocks)
-		// {
-		// 	print_block(blocks);
-		// 	blocks = blocks->next;
-		// }
-		//print_io_config(&meta);
-		// ft_printf("infile: %s\nappend: %d\noutfile: %s\nappend: %d\n", meta.infile.file,
-		// 	meta.infile.append, meta.outfile.file, meta.outfile.append);
-		exec_cmd(meta.cmd, meta.cmd_args, meta.envp);
+		if (validate(tokens))
+		{
+			blocks = parser(&meta, tokens);
+			blocks_start = blocks;
+			if (blocks)
+			{
+				
+					meta.cmd = blocks->words[0];
+					meta.cmd_args = &(blocks->words[1]);
+					// while (blocks)
+					// {
+					// 	print_block(blocks);
+					// 	blocks = blocks->next;
+					// }
+					//print_io_config(&meta);
+					// ft_printf("infile: %s\nappend: %d\noutfile: %s\nappend: %d\n", meta.infile.file,
+					// 	meta.infile.append, meta.outfile.file, meta.outfile.append);
+					exec_cmd(meta.cmd, meta.cmd_args, meta.envp);
+			}
+			block_clear(&blocks_start);
+		}
 		token_clear(&tokens);
-		block_clear(&blocks_start);
 	}
 	return (0);
 }
