@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:59:01 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/27 12:56:34 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/17 13:44:53 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ int	main(int argc, char **argv, char **envp)
 					//print_io_config(&meta);
 					// ft_printf("infile: %s\nappend: %d\noutfile: %s\nappend: %d\n", meta.infile.file,
 					// 	meta.infile.append, meta.outfile.file, meta.outfile.append);
-					exec_cmd(meta.cmd, meta.cmd_args, meta.envp);
+					exec_cmd(&meta);
 			}
 			block_clear(&blocks_start);
 		}
