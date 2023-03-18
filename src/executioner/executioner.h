@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:15:20 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/03/17 13:44:36 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:46:41 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ typedef struct s_vars
 }t_vars;
 
 char	**get_paths(char **envp);
+
+int	executioner(t_code_block *blocks, t_meta *meta);
 
 #endif

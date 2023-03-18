@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:59:01 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/03/17 13:44:53 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:48:05 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int	main(int argc, char **argv, char **envp)
 	t_token *tokens;
 	t_token *tokens_start;
 	t_code_block	*blocks;
-	t_code_block	*blocks_start;
 	t_meta	meta;
 	char	*line;
 
@@ -121,23 +120,8 @@ int	main(int argc, char **argv, char **envp)
 		if (validate(tokens))
 		{
 			blocks = parser(&meta, tokens);
-			blocks_start = blocks;
-			if (blocks)
-			{
-				
-					meta.cmd = blocks->words[0];
-					meta.cmd_args = &(blocks->words[1]);
-					// while (blocks)
-					// {
-					// 	print_block(blocks);
-					// 	blocks = blocks->next;
-					// }
-					//print_io_config(&meta);
-					// ft_printf("infile: %s\nappend: %d\noutfile: %s\nappend: %d\n", meta.infile.file,
-					// 	meta.infile.append, meta.outfile.file, meta.outfile.append);
-					exec_cmd(&meta);
-			}
-			block_clear(&blocks_start);
+			executioner(blocks, &meta);
+			block_clear(&blocks);
 		}
 		token_clear(&tokens);
 	}

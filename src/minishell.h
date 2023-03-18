@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:35:50 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/22 14:21:15 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/17 14:59:58 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,7 @@ typedef struct s_meta
 	t_redirection	infile;
 	t_redirection	outfile;
 }t_meta;
+
+void	print_tokens(t_token *tokens);
 
 #endif
