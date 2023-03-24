@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:59:01 by lmiehler          #+#    #+#             */
 /*   Updated: 2023/03/17 15:48:05 by tvasilev         ###   ########.fr       */
@@ -95,6 +95,24 @@ void	print_tokens(t_token *tokens)
 	}
 }
 
+void	print_blocks(t_code_block *blocks)
+{
+	t_code_block	*cur;
+
+	cur = blocks;
+	while (cur)
+	{
+		print_block(cur);
+		cur = cur->next;
+	}
+}
+
+void	cleanup(t_meta *meta)
+{
+	token_clear(&meta->tokens);
+	block_clear(&meta->blocks);
+}
+
 //! all built in commands take wrong arguments because of execve
 int	main(int argc, char **argv, char **envp)
 {
@@ -112,9 +130,18 @@ int	main(int argc, char **argv, char **envp)
 		line = readline("\033[0;31m[Gigashell]\033[0m% ");
 		if (line == NULL) // ctrl-D handling
 			exit(0);
+		if (is_unclosed_quote(line))
+			ft_printf("ERROR: unclosed quotes\n");
 		if (!ft_strncmp(line, "exit", 5))
 			exit(0);
 		add_history(line);
+		meta.tokens = lexer(line, envp);
+		print_tokens(meta.tokens);
+		meta.blocks = parser(&meta, meta.tokens);
+		print_blocks(meta.blocks);
+		print_io_config(&meta);
+		executioner(&meta);
+		cleanup(&meta);
 		tokens = lexer(line, envp);
 		//print_tokens(tokens);
 		if (validate(tokens))

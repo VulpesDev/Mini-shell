@@ -36,4 +36,6 @@ int		dp_free(char **str);
 
 char	is_quote(char c);
 
+int	is_unclosed_quote(char *str);
+
 #endif

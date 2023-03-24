@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:35:50 by lmiehler          #+#    #+#             */
 /*   Updated: 2023/03/18 12:23:37 by tvasilev         ###   ########.fr       */
@@ -15,6 +15,8 @@
 
 # include "libft.h"
 
+# define DOC_NAME "here_doc"
+
 typedef struct s_redirection
 {
 	char	*file;
@@ -23,9 +25,9 @@ typedef struct s_redirection
 
 typedef struct s_code_block
 {
-	int				symbol;
-	char			**words;
-	void			*next;
+	int					symbol;
+	char				**words;
+	struct s_code_block	*next;
 }t_code_block;
 
 /*str is the content.
@@ -40,15 +42,18 @@ typedef struct s_token
 
 typedef struct s_meta
 {
+	int				last_exit_status;
 	int				exit_status;
 	char			**envp;
 	char			*cmd;
 	char			**cmd_args;
-	t_list			*tokens;
 	t_redirection	infile;
 	t_redirection	outfile;
+	t_token			*tokens;
+	t_code_block	*blocks;
 }t_meta;
 
 void	print_tokens(t_token *tokens);
+void	create_here_doc(char *limiter);
 
 #endif
