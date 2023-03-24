@@ -113,6 +113,7 @@ void	cleanup(t_meta *meta)
 	block_clear(&meta->blocks);
 }
 
+//! all built in commands take wrong arguments because of execve
 int	main(int argc, char **argv, char **envp)
 {
 	t_meta	meta;
@@ -138,6 +139,30 @@ int	main(int argc, char **argv, char **envp)
 		print_io_config(&meta);
 		executioner(&meta);
 		cleanup(&meta);
+		tokens = lexer(line, envp);
+		//print_tokens(tokens);
+		if (validate(tokens))
+		{
+			blocks = parser(&meta, tokens);
+			blocks_start = blocks;
+			if (blocks)
+			{
+				
+					meta.cmd = blocks->words[0];
+					meta.cmd_args = &(blocks->words[1]);
+					// while (blocks)
+					// {
+					// 	print_block(blocks);
+					// 	blocks = blocks->next;
+					// }
+					//print_io_config(&meta);
+					// ft_printf("infile: %s\nappend: %d\noutfile: %s\nappend: %d\n", meta.infile.file,
+					// 	meta.infile.append, meta.outfile.file, meta.outfile.append);
+					exec_cmd(meta.cmd, meta.cmd_args, meta.envp);
+			}
+			block_clear(&blocks_start);
+		}
+		token_clear(&tokens);
 	}
 	return (0);
 }

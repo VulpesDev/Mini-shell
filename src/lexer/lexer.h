@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:31:27 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/23 22:31:50 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:27:55 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "utils.h"
 # include <stdlib.h>
+# define SYMBOL_ERROR "parse error\n"
 
 t_token	*lexer(char *str, char **envp);
 
@@ -47,5 +48,9 @@ void	token_clear(t_token **lst);
 
 /*adds a token to the back of a token list*/
 void	token_add_back(t_token **lst, t_token *new_elem);
+
+int		validate(t_token *blocks);
+
+int		print_error(void);
 
 #endif

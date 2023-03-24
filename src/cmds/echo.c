@@ -6,12 +6,13 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:01:16 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/19 14:57:32 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/26 19:53:23 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//!echo without args is seg fault
 void	gs_echo_print(char **strs)
 {
 	int	i;
@@ -27,7 +28,7 @@ void	gs_echo_print(char **strs)
 
 int	gs_echo(char **cmd_args)
 {
-	if (cmd_args == NULL)
+	if (!*cmd_args)
 	{
 		ft_printf("\n");
 	}

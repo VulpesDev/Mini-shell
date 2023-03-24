@@ -53,5 +53,5 @@ int	redirect(int fd1, int fd2)
 
 int	executioner(t_meta *meta)
 {
-	return (1);
+	
 }
