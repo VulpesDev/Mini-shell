@@ -6,7 +6,7 @@
 /*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:35:50 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/26 18:34:21 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/03/18 12:23:37 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_meta
 	t_code_block	*blocks;
 }t_meta;
 
+void	print_tokens(t_token *tokens);
 void	create_here_doc(char *limiter);
 
 #endif

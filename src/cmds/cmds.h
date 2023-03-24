@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:49:45 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/26 16:31:46 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/17 13:36:04 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	gs_exit(int status);
 
 int		gs_echo(char **cmd_args);
 
-void	gs_export(char **cmd_args, char **envp);
+void	gs_export(char **cmd_args, t_meta *meta);
 
-void	gs_unset(char **cmd_args, char **envp);
+void	gs_unset(char **cmd_args, t_meta *meta);
 
 #endif

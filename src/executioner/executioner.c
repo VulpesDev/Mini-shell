@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   executioner.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:38:16 by lmiehler          #+#    #+#             */
 /*   Updated: 2023/02/26 19:32:52 by lmiehler         ###   ########.fr       */
@@ -53,5 +53,38 @@ int	redirect(int fd1, int fd2)
 
 int	executioner(t_meta *meta)
 {
-	
+	int stdin = dup(0);
+	int stdout = dup(1);
+	int fd[2];
+	pipe(fd);
+	t_code_block *cur, *next, *prev = 0;
+	cur = blocks;
+	while (cur)
+	{
+		if (!cur->symbol)
+		{
+			next = cur->next;
+			if (next && next->symbol && !ft_strncmp(next->words, "||", 2))
+			{
+				dup2(fd[1], 1);
+				meta->cmd = cur->words[0];
+				meta->cmd_args = cur->words;
+				exec_cmd(meta);
+				if (prev && prev->symbol)
+				{
+					dup2(fd[0], 0);
+					meta->cmd = cur->words[0];
+					meta->cmd_args = cur->words;
+					dup2(stdout, 1);
+					exec_cmd(meta);
+					dup2(stdin, 0);
+				}
+			}
+		}
+		prev = cur;
+		cur = cur->next;
+	}
+	close(fd[0]);
+	close(fd[1]);
+	return (0);
 }
