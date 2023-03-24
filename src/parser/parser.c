@@ -16,22 +16,22 @@
 
 static int	handle_files(t_meta *meta, t_token **tokens)
 {
-	if (!ft_strncmp((*tokens)->str, ">>", 2)
+	if (!ft_strncmp((*tokens)->str, ">>", 3)
 		|| !ft_strncmp((*tokens)->str, ">", 2))
 	{
 		if (!ft_strncmp((*tokens)->str, ">", 2))
 			meta->outfile.append = 0;
-		else if (!ft_strncmp((*tokens)->str, ">>", 2))
+		else if (!ft_strncmp((*tokens)->str, ">>", 3))
 			meta->outfile.append = 1;
 		(*tokens) = (*tokens)->next;
 		meta->outfile.file = ft_strdup((*tokens)->str);
 	}
-	else if (!ft_strncmp((*tokens)->str, "<<", 2)
+	else if (!ft_strncmp((*tokens)->str, "<<", 3)
 		|| !ft_strncmp((*tokens)->str, "<", 2))
 	{
 		if (!ft_strncmp((*tokens)->str, "<", 2))
 			meta->infile.append = 0;
-		else if (!ft_strncmp((*tokens)->str, "<<", 2))
+		else if (!ft_strncmp((*tokens)->str, "<<", 3))
 			meta->infile.append = 1;
 		(*tokens) = (*tokens)->next;
 		meta->infile.file = ft_strdup((*tokens)->str);
