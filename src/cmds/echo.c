@@ -6,13 +6,13 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:01:16 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/26 19:53:23 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/25 02:02:21 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//!echo without args is seg fault
+/////!echo without args is seg fault
 void	gs_echo_print(char **strs)
 {
 	int	i;

@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:33:32 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/03/17 13:35:18 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/25 02:42:55 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	gs_edit_export(char **cmd_args, t_meta *meta, char **new_split, int i)
 	return (0);
 }
 
-void	gs_export(char **cmd_args, t_meta *meta)
+int	gs_export(char **cmd_args, t_meta *meta)
 {
 	int		i;
 	char	**new_split;
@@ -97,7 +97,10 @@ void	gs_export(char **cmd_args, t_meta *meta)
 	if (!cmd_args[0])
 		gs_env(meta->envp);
 	if (gs_validate_export(cmd_args))
+	{
 		ft_fprintf(2, "ERROR!\n");
+		return (1);
+	}
 	while (cmd_args[++i])
 	{
 		found = 0;
@@ -107,4 +110,5 @@ void	gs_export(char **cmd_args, t_meta *meta)
 			gs_create_export(cmd_args, meta, i);
 		dp_free(new_split);
 	}
+	return (0);
 }

@@ -1,0 +1,11 @@
+echo -n -n -n -nnnnnnnnnnnnnnnnnnnnnnnn -nnnnnnnnnnnnnnnn -nm
+export test=                 1
+export test=                    j
+export 1est=                  j
+export test= 11
+echo $?
+unclosed quotes still executes commands
+echo "'$US'ER"
+
+unset doesn't work
+also check returns and overall all built-in commands!
