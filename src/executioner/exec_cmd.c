@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:24:31 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/03/25 03:19:03 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/25 03:26:42 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	builtin_cmds(t_meta *meta, t_vars *vars)
 	if (!ft_strncmp("env", meta->cmd, 4))
 		return (gs_env(meta->envp));
 	else if (!ft_strncmp("exit", meta->cmd, 5))
-		return (gs_exit(0));
+		return (gs_exit(ft_atoi(meta->cmd_args[1])));
 	else if (!ft_strncmp("echo", meta->cmd, 5))
 		return (gs_echo(&meta->cmd_args[1]));
 	else if (!ft_strncmp("pwd", meta->cmd, 4))
