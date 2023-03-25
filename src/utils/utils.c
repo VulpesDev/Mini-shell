@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:18:24 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/26 14:19:59 by lmiehler         ###   ########.fr       */
+/*   Updated: 2023/03/24 20:36:45 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,10 @@ char	**dp_cpy(char **str)
 
 	i = -1;
 	len = dp_size(str);
-	result = xmalloc(len * sizeof(char *) + 1);
+	result = xmalloc((len + 1) * sizeof(char *));
 	while (++i < len)
 		result[i] = ft_strdup(str[i]);
+	result[i] = 0;
 	return (result);
 }
 

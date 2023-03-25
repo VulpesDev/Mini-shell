@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:33:29 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/03/17 13:35:46 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/25 01:51:45 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,29 @@ int	gs_remove_unset(t_meta *meta, char *str)
 	return (0);
 }
 
-void	gs_unset(char **cmd_args, t_meta *meta)
+int	error(char **cmd_args)
+{
+	if (!cmd_args[0])
+	{
+		ft_fprintf(2, "unset: not enough arguments\n");
+		return (1);
+	}
+	if (gs_validate_unset(cmd_args))
+	{
+		ft_fprintf(2, "ERROR!\n");
+		return (1);
+	}
+	return (0);
+}
+
+int	gs_unset(char **cmd_args, t_meta *meta)
 {
 	int		i;
 
-	if (!cmd_args[0])
-		ft_fprintf(2, "unset: not enough arguments\n");
-	if (gs_validate_unset(cmd_args))
-		ft_fprintf(2, "ERROR!\n");
+	if (!cmd_args[0] || !gs_validate_unset(cmd_args))
+		return (error(cmd_args));
 	i = -1;
 	while (cmd_args[++i])
-		gs_remove_unset(meta, cmd_args[i]);
+		return (gs_remove_unset(meta, cmd_args[i]));
+	return (0);
 }

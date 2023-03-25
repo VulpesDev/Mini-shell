@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:59:01 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/03/17 15:48:05 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/24 20:18:16 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void init_meta(t_meta *meta, char **envp)
 	meta->cmd_args = NULL;
 	meta->infile.file = NULL;
 	meta->outfile.file = NULL;
-	meta->infile.append = 0;
+	meta->infile.append = 0;	
 	meta->outfile.append = 0;
 }
 
@@ -113,7 +113,6 @@ void	cleanup(t_meta *meta)
 	block_clear(&meta->blocks);
 }
 
-//! all built in commands take wrong arguments because of execve
 int	main(int argc, char **argv, char **envp)
 {
 	t_token *tokens;
@@ -136,21 +135,14 @@ int	main(int argc, char **argv, char **envp)
 			exit(0);
 		add_history(line);
 		meta.tokens = lexer(line, envp);
-		print_tokens(meta.tokens);
 		meta.blocks = parser(&meta, meta.tokens);
-		print_blocks(meta.blocks);
-		print_io_config(&meta);
-		executioner(&meta);
-		cleanup(&meta);
-		tokens = lexer(line, envp);
-		//print_tokens(tokens);
-		if (validate(tokens))
+		if (validate(meta.tokens))
 		{
-			blocks = parser(&meta, tokens);
-			executioner(blocks, &meta);
-			block_clear(&blocks);
+			meta.blocks = parser(&meta, meta.tokens);
+			executioner(meta.blocks, &meta);
+			block_clear(&meta.blocks);
 		}
-		token_clear(&tokens);
+		token_clear(&meta.tokens);
 	}
 	return (0);
 }
