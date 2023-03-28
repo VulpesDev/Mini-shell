@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:35:17 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/26 15:33:24 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:30:20 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 #include "libft.h"
 #include "cmds.h"
 
-/////TODO cd without arguments goes to user home
-/////TODO cd with '~' as an argument goes to user home
-/////TODO if directory does not exist display 'cd: no such file or directory: {arg}'
 int	gs_chdir_protect(char	*path)
 {
 	if (chdir(path))
