@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:33:32 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/03/25 02:42:55 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:08:59 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@
 #include <stdlib.h>
 
 //? Validate input
-/////TODO Compare the string before = sign
-/////TODO if it exists, replace the value
-/////TODO if it doesn't exist create a new one
-/////TODO export without arguments displays env
 //? when more than one equal sign, problems
 //? when old_split fails maybe I have to free new_split ?
 int	gs_validate_export(char **cmd_args)
