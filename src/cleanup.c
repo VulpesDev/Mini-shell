@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.h                                          :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 13:15:00 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/05/20 14:05:13 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/05/02 16:25:53 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/05/24 17:11:51 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNALS_H
-# define SIGNALS_H
-# include <signal.h>
-# include <stdio.h>
+#include <stdio.h>
+#include "libft.h"
+#include "builtins.h"
+#include "interpreter.h"
+#include <readline/readline.h>
+#include <readline/history.h>
+#include "parser.h"
 
-void	init_signals( void );
+extern PidList	*g_pid_list;
 
-#endif
+void	cleanup(void)
+{
+	pidList_clear(&g_pid_list);
+	dp_free(g_envp);
+}

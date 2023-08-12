@@ -3,34 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 16:58:33 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/25 19:39:32 by lmiehler         ###   ########.fr       */
+/*   Created: 2023/05/09 13:14:56 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/05/20 15:46:43 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
+#include "signals.h"
+#include <stdlib.h>
+#include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <sys/ioctl.h>
-#include <stdlib.h>
-#include <fcntl.h>
 #include <unistd.h>
-#include <stdio.h>
-#include "libft.h"
 
-void	sigint_handler(int sig)
+
+void	ctrlc_signal( int a )
 {
-	//ioctl(STDIN_FILENO, TIOCSTI, "\n");
-	ft_printf("\n");
+	if (a)
+	;
+	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
 }
 
-void	init_signals()
+void	init_signals( void )
 {
-	signal(SIGINT, sigint_handler);
+	signal(SIGINT, &ctrlc_signal);
 	signal(SIGQUIT, SIG_IGN);
 }

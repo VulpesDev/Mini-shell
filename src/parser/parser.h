@@ -5,27 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:42:06 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/02/22 16:55:56 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/05/09 13:15:30 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/05/09 13:16:14 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
+# include <stdbool.h>
+# include <stdlib.h>
 # include "minishell.h"
 
-/*split the tokens into code blocks separetaed by
-the symbols bool_s[0] is a bool for symbol
-bool_s[1] is a bool for file*/
-t_code_block	*parser(t_meta *meta, t_token *tokens);
+// Parser data
+extern Token *tokens;
+extern Token *parse_cache;
+extern int parse_status;
 
-void			block_clear(t_code_block **lst);
+// Call to parser
+AstNode	*parser(char *line);
 
-t_code_block	*block_new(char **words, int symbol);
+// Utils
+void	print_ast(AstNode *ast);
+void	free_ast(AstNode *ast);
 
-t_code_block	*block_last(t_code_block *lst);
+// Node building
+AstNode	*build_command(Token *command, Token *redirections);
+AstNode	*build_pipeline(AstNode *left, AstNode *right);
+AstNode	*build_condition(AstNode *left, AstNode *right, ConditionalType type);
 
-void			block_add_back(t_code_block **lst, t_code_block *new_elem);
+// Recursive-Descent-Parser entry point
+AstNode	*parse_expression( void );
+
+// Token stream manipulation
+int		accept(TokenType type);
+int		expect(TokenType type);
+int		accept_redirection( void );
+
+
+
+# define TOK_REDIRECTION 99
 
 #endif

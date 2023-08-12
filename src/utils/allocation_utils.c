@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.h                                          :+:      :+:    :+:   */
+/*   allocation_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 13:15:00 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/05/20 14:05:13 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/05/09 13:23:15 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/05/11 18:19:25 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNALS_H
-# define SIGNALS_H
-# include <signal.h>
-# include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-void	init_signals( void );
+void	malloc_fail_procedure( void )
+{
+	printf("Error: malloc failed: terminating program\n");
+	exit(1);
+}
 
-#endif
+void	*xmalloc(size_t size)
+{
+	void	*p;
+
+	p = malloc(size);
+	if (p == NULL)
+		malloc_fail_procedure();
+	return (p);
+}

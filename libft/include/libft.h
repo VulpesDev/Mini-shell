@@ -79,6 +79,6 @@ int		ft_error(const char *format, ...);
 char	*get_next_line(int fd);
 
 int		count_words(char const *str, char sep);
-void	free_strs(char *strs[]);
+void	free_strs_sp(char *strs[]);
 
 #endif

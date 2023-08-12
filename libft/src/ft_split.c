@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "libft.h"
 
-void	free_strs(char *strs[])
+void	free_strs_sp(char *strs[])
 {
 	int	i;
 

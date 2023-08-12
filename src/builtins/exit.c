@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.h                                          :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 13:15:00 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/05/20 14:05:13 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/05/01 14:26:43 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/05/07 16:20:39 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNALS_H
-# define SIGNALS_H
-# include <signal.h>
-# include <stdio.h>
+#include "builtins.h"
 
-void	init_signals( void );
-
-#endif
+void	gs_exit(int status)
+{
+	cleanup();
+	exit(status);
+}

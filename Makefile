@@ -3,17 +3,17 @@ MAKEFLAGS = --no-print-directory
 
 # Compiler
 CC		:=	cc
-CFLAGS	:=	-g
+CFLAGS	:=	-g -Wall -Werror -Wextra
 
 # Targets
-TARGET	:= gigashell
+TARGET	:= minishell
 
 # Dependencies
 LIB_DEPS := libft.a libreadline.a
 LIB_DIRS := libft
 
 # Includes
-INC_DIRS := libft/include src src/parser src/cmds src/executioner src/utils src/lexer src/expander src/signals
+INC_DIRS := $(wildcard */) $(wildcard */*/) $(wildcard */*/*/) $(wildcard */*/*/*/)
 
 # Directories
 SRC_DIR := src
@@ -22,8 +22,15 @@ BLD_DIR	:= build
 # =====DO NOT EDIT BELOW THIS LINE=====
 
 # Sources, Objects and Includes
-SRC := $(wildcard $(SRC_DIR)/*.c) $(wildcard $(SRC_DIR)/*/*.c)
+SRC := $(wildcard $(SRC_DIR)/*.c) $(wildcard $(SRC_DIR)/parser/lexer/*.c) \
+		$(wildcard $(SRC_DIR)/parser/*.c) \
+		$(wildcard $(SRC_DIR)/interpreter/*.c) \
+		$(wildcard $(SRC_DIR)/interpreter/redirections/*.c) \
+		$(wildcard $(SRC_DIR)/interpreter/expander/*.c) \
+		$(wildcard $(SRC_DIR)/signals/*.c)\
+		$(wildcard $(SRC_DIR)/builtins/*.c)
 OBJ := $(addprefix $(BLD_DIR)/, $(SRC:.c=.o))
+
 
 E_INC_DIRS	:= $(foreach dir, $(INC_DIRS), $(addprefix -I./, $(dir)))
 E_LIB_DIRS	:= $(foreach dir, $(LIB_DIRS), $(addprefix -L./, $(dir)))
@@ -31,9 +38,6 @@ E_LIB_DEPS	:= $(foreach lib, $(LIB_DEPS), $(addprefix -l, $(subst .a, , $(subst 
 
 # =======BUILD=======
 all: $(TARGET)
-
-run: $(TARGET)
-	./$(TARGET)
 
 # Linker
 $(TARGET): $(OBJ)
@@ -47,7 +51,7 @@ $(BLD_DIR)/%.o: %.c
 	@mkdir -p $(BLD_DIR)
 	@mkdir -p $(@D)
 	@$(CC) -c $(CFLAGS) $< $(E_INC_DIRS) -o $@
-	@printf "Compiling $@: $(GREEN)OK!\n$(DEF_COLOR)"
+	@printf "Compiling $<: $(GREEN)OK!\n$(DEF_COLOR)"
 
 # Commands
 fclean:
@@ -62,14 +66,13 @@ clean:
 
 re: fclean all
 
-norm:
-	@(norminette | grep Error) || (printf "$(GREEN)Norminette Success\n$(DEF_COLOR)")
+run: $(TARGET)
+	./$(TARGET)
 
 print-%:
 	@echo $* = $($*)
 
 # Colors
-
 DEF_COLOR	=	\033[0;39m
 RED			=	\033[1;31m
 GREEN		=	\033[1;32m

@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.h                                          :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 13:15:00 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/05/20 14:05:13 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/05/01 14:25:31 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/05/01 14:25:31 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNALS_H
-# define SIGNALS_H
-# include <signal.h>
-# include <stdio.h>
+#include "builtins.h"
 
-void	init_signals( void );
-
-#endif
+int	gs_env(void)
+{
+	if (g_envp == NULL)
+		return (1);
+	print_strs(g_envp);
+	return (0);
+}

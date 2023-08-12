@@ -3,57 +3,96 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmiehler <lmiehler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:35:50 by lmiehler          #+#    #+#             */
-/*   Updated: 2023/03/18 12:23:37 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/05/11 18:20:27 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/05/21 15:28:23 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "libft.h"
+# define PROMPT_ISLAND "\033[0;32m<Island>~\033[0m "
+# define PROMPT_ATLANTIS "\033[0;34m~Atlantis~\033[0m "
+# define PROMPT_MINIHELL "\033[0;31mMinihell:\033[0m "
 
-# define DOC_NAME "here_doc"
+//#define fprintf(...)
 
-typedef struct s_redirection
+#include <stdlib.h>
+
+extern char **g_envp;
+
+//------Token Data Structure for the Lexer------
+
+typedef enum TokenType	TokenType;
+
+typedef struct Token
 {
-	char	*file;
-	int		append;
-}t_redirection;
+	enum	TokenType
+	{
+		TOK_NONE,
+		TOK_WORD,
+		TOK_PIPE,
+		TOK_REDIRECT_IN,
+		TOK_REDIRECT_OUT,
+		TOK_REDIRECT_APPEND,
+		TOK_REDIRECT_HEREDOC,
+		TOK_AND,	
+		TOK_OR,
+		TOK_LPAREN,
+		TOK_RPAREN
+	}				type;
+	char			*word;
+	struct Token	*next;
+}Token;
 
-typedef struct s_code_block
+//------Abstract Syntax Tree Data Structure for the Parser------
+
+typedef enum ConditionalType ConditionalType;
+
+typedef struct CommandNode
 {
-	int					symbol;
-	char				**words;
-	struct s_code_block	*next;
-}t_code_block;
+	Token	*command;
+	Token	*redirections;
+}CommandNode;
 
-/*str is the content.
-type could be either 's' or 'w'
-for symbol or word*/
-typedef struct s_token
+typedef struct PipelineNode
 {
-	char	*str;
-	char	type;
-	void	*next;
-}t_token;
+	struct AstNode	*left;
+	struct AstNode	*right;
+}PipelineNode;
 
-typedef struct s_meta
+typedef struct ConditionalNode
 {
-	int				last_exit_status;
-	int				exit_status;
-	char			**envp;
-	char			*cmd;
-	char			**cmd_args;
-	t_redirection	infile;
-	t_redirection	outfile;
-	t_token			*tokens;
-	t_code_block	*blocks;
-}t_meta;
+	enum	ConditionalType
+	{
+		COND_AND,
+		COND_OR
+	}				type;
+	struct AstNode	*left;
+	struct AstNode	*right;
+}ConditionalNode;
 
-void	print_tokens(t_token *tokens);
-void	create_here_doc(char *limiter);
+typedef struct AstNode
+{
+	enum	AstNodeType
+	{
+		AST_COMMAND_NODE,
+		AST_PIPELINE_NODE,
+		AST_CONDITIONAL_NODE
+	}type;
+	union
+	{
+		struct CommandNode		command_node;
+		struct PipelineNode		pipeline_node;
+		struct ConditionalNode	conditional_node;
+	};
+}		AstNode;
+
+// Core functions
+void	setup(char **envp);
+void	cleanup( void );
+void	*xmalloc(size_t size);
 
 #endif
